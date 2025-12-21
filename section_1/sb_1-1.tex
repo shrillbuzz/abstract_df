@@ -1,0 +1,201 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\residue}{\mathbb{Z}/n\mathbb{Z}}
+
+
+
+\begin{document}
+
+
+% 3, 4, 5
+
+% 1, 3, 4, 5, 9, 15, 16, 17, 19, 20, 21, 23, 25, 26, 27, 29, 30, 31, 32, 33, 34, 35
+
+\section*{3 \& 4}
+
+Notice that for any integers x, y the following properties holds for their residue classes mod n:
+\[\overline{x * y} = \bar x * \bar y \quad \quad \overline{x+y} = \bar x + \bar y\]
+
+The associativity of multiplication and addition of residue classes in  \(\residue\) follows from these facts and the associativity of multiplication and addition over the integers. Let \(a, b, c \in \Z\).
+
+\begin{align*}
+    (\bar x + \bar y) + \bar z &=  \overline{(x+y) + z}\\
+    &= \overline{x+ (y+z)}\\
+    &= \bar x + (\bar y + \bar z)
+\end{align*}
+
+The argument is essentially the same for multiplication.
+
+\section*{5}
+
+ Let \(n > 1\). Now consider \(\bar 0\in \residue\). It's not possible for \(\bar 0\) to have a multiplicative inverse, because any value multiplied by \(\bar 0\) is \(\bar 0\).  Thus \(\residue\) for n greater than one are not groups.
+ 
+
+\section*{7}
+Define for any real number x:
+\[\bar x = x - [x]\]
+
+Notice that for any \(x, y \in G\) 
+\[x \star y = x + y - [x +y] = \overline{x+y}\]
+The associativity and commutativity of \(\star\) follow from this definition (combined with the associativity and commutativity of addition). 
+\[x \star y = \bar x \star \bar y = \overline{x+y}\]
+\begin{itemize}
+    \item well defined.
+
+    If \(x = x'\) and \(y = y'\), then 
+    \[x \star y = x + y - [x + y] = x' + y' - [x' + y'] = x' \star y'\]
+
+  \item binary operation/closure
+
+\(x \star y\) is at least 0 (when x+y is an integer) and no more than one. Thus \(x \star y \in G\) 
+
+
+    \item associative
+
+    \[(x \star y) \star z = \overline{(x+y) +z} = \overline{x+(y +z)} = x \star (y \star z) \]
+
+    \item commutative
+    \[x \star y = \overline{x+y} = \overline{y + x} = y \star x\]
+    
+    \item identity
+
+    For any x in G:
+    \[x \star 0 = \overline{x+0} = x\]
+    
+    \item every element has an inverse
+
+    Let x be an arbitrary element of G. Then 1-x is its inverse:
+    \[x \star (1-x) = \overline{x + 1 - x} = \bar 1 = 0\]
+    
+    
+\end{itemize}
+
+
+
+\section*{9}
+
+\begin{itemize}
+    \item (a) ...
+
+
+\item (b)
+
+\begin{itemize}
+    \item associativity, binary operation ...
+    \item identity element
+    
+    For any x in G, x*1 = x so 1 is identity
+    \item everything has inverse 
+
+    Let \(a + b\sqrt{2} \in G\). We want to show some \(x, y \in \mathbb Q\) exist such that
+    \[(a + b\sqrt{2})(x + y\sqrt{2}) = ax + b\sqrt{2}y\sqrt{2} + ay\sqrt{2} +b\sqrt{2}ax  = ax + 2by + (ay + bax)\sqrt{2} =  1\]
+
+    For this to be the case, the following system of equations must be satisfiable:
+
+    \[ax + 2by = 1 \quad \quad  ay + bax = 0\]
+
+    ... (this actually seems pretty hard because for some values of a, b it seems line there is no solution?)
+
+\end{itemize}
+\end{itemize}
+
+
+\section*{15}
+
+Very straight forwar/. I'll do this once I can type ion my laptop and not have to deal with the evilness of qwerty. 
+
+
+
+\section*{16}
+
+First direction: If the order of an element of a group is 2 then by definition, that element squared is 1. If the order is 1, then that element to any power including 2 is 1. 
+
+Second direction: Suppose x doesn't have order 1 or 2 (in other words x has order greater than 2). Thus the smallest positive integer n such that \(x^n =1\) is greater than 2. It can't be the case then that  \(x^2 = 1\).
+
+\section*{17}
+
+\section*{19}
+
+\section*{20}
+
+
+
+% \section{P 2.1.6}
+
+% \subparagraph{ii} addition is not associative
+% $$((a,b) + (c,d)) + (e,f) = (b+d, a+c) + (e,f)$$
+% $$ (b+d, a+c) + (e,f)= (a+c+f,b+d+e)$$
+
+% $$(a,b) + ((c,d) + (e,f)) = (a,b) + (d+f,c+e) $$
+% $$(a,b) + (d+f,c+e) = (c+e+b,d+f+a)$$
+
+% \section{P 2.2.1} Determine which are subspaces of \(\mathbb{R}^3\)
+% \paragraph{a} All vectors of the form (a,b,c), where b = 2a+c are a subspace
+
+% \subparagraph{i} addition is closed
+
+% $$(a_1,2a_1+c_1,c_1)+(a_2,2a_2+c_2,c_2) = (a_1+a_2,2(a_2+a_1)+(c_1 +c_2) ,c_1+c_1)$$
+
+% \subparagraph{ii} • is closed
+
+% $$\alpha (a,b,c) = (\alpha a, 2(\alpha a)+\alpha c,\alpha c)$$
+
+% \subparagraph{iii} has zero vector of \(\mathbb{R}^3\)
+
+% $$(0,0,0) \in(a,2a+c, c)$$
+
+% \paragraph{b} All vectors of the form (a,b,2) are not a subspace
+% \subparagraph{i} Not closed under • 
+
+% $$2*(a,b,2) = (2a,2b,4) \not\in (a,b,2) $$
+
+
+% %•••••••••%
+% \section{P 2.2.5} Which of the following functions are subspaces of V? Prove your assertion. 
+% %•••••••••%
+% \paragraph{(a)} $f \in V$ for which f(1) = 0, is a subspace
+
+% \subparagraph{i} addition is closed
+% $$(g + f)(x) = g(x) + f(x) $$
+% $$g(1) + f(1) = 0$$
+% $$(g + f)(x) \in V$$
+
+
+% \subparagraph{ii} • is closed
+
+% $$\alpha f(1) = 0$$
+% $$\alpha f(x) \in V$$
+
+
+% \subparagraph{iii} has zero vector of V
+% $$f(x) = 0 $$
+
+% $$g(x) + f(x) = g(x)$$
+
+
+% \paragraph{(b)}$f \in V$ for which f(1) = 1,  is not a subspace
+
+% \subparagraph{i} addition is not closed
+
+% $$(g + f)(x) = f(x) +g(x)  $$
+% $$ (g + f)(1) = g(1) + f(1) = 2$$
+% $$(g + f)(x) \mbox{ is not in the subspace}$$
+
+
+
+\end{document}
