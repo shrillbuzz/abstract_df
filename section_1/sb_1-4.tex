@@ -1,0 +1,94 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\residue}{\mathbb{Z}/n\mathbb{Z}}
+\newcommand{\prob}[1]{\section*{#1}}
+
+
+\begin{document}
+
+\prob 1 
+
+Prove that \( |GL_2(\mathbb{F}) |= 6 \)
+
+
+\prob 2
+
+Write out all the elements of \(GL_2 (F_2) \) and compute the order of each element.
+
+\prob 3 Show that \( GL_2 ( \F  ) \) is non-abelian.
+
+\prob 4
+
+Show that if n is not prime then \(\residue\) is not a field. 
+
+\prob 5 
+
+Show that \(GL_n(F)\) is a finite group if and only if F has a finite number of elements
+
+
+\prob 6
+
+If \(|F| = q\) is finite prove that \(GL_n(F) < q^{n^2}\).
+
+\prob 7 
+
+Let p be a prime.
+Prove that the order of \(GL_2 (\F_p) \) is \(p^4 -p^3 -p^2 + p\). 
+(do not just quote the order formula in this section). 
+[Subtract the number of 2 x 2 matrices over \(\F_p\). 
+You may use tha fact that a 2 x 2 matricx is not invertible if and only if one row is a muliple of the other. ]
+
+\prob 8
+
+Show that \(GL_n(F)\) is non-abelian for any \(n \ge 2\) and any F. 
+
+
+\prob 9 
+
+Prove that the binary operation of matrix muliplication of 2 x 2 matricies iwth real entities is associative
+
+
+\prob {10}
+Let \(H(F) = \{\begin{bmatrix}
+1 & a & b \\
+0 & 1 & c \\
+0 & 0 & 1
+\end{bmatrix} | a, b, c, d \in F\}\) -- called the Heisenberg group over F. Let 
+\(X = \begin{bmatrix}
+    1 & a & b\\
+    0 & 1 & c\\
+    0 & 0 & 1
+\end{bmatrix}\) and \(Y = \begin{bmatrix}
+    1 & d & e\\
+    0 & 1 & f \\
+    0 & 0 & 1
+\end{bmatrix}\) be elements of \(H(F)\).
+
+\begin{enumerate}
+    \item Compute the matrix product \(XY\) and deduce that \(H(F)\) is closed under matrix multiplication. 
+    Exhibit explicit maricies such that \(XY  \not = Y X\) (so that \(H(F)\) is always non-abelian).
+    \item Find and explicit formula for the matrix inverse \(X^{-1}\) and deduce that \(H(F)\) is closed under inverse.
+    \item Prove the associative law for \(H(F)\) and deduce that \(H(F)\) is a group of order \(|F|^3\). 
+    \item Find the order of each element of the finite group \(H(\Z / 2 \Z)\).
+    \item Prove that every nonidentity elements of the group \(H (\R )\) has infinite order.
+\end{enumerate}
+
+
+\end{document}
