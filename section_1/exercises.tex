@@ -1,0 +1,1032 @@
+%1(b)(e): axioms are not automatic; checking associativity is a skill.
+%3/4: proving associativity in quotient sets is clean and common.
+%7: “group” is not just ± under integer operations; structure is flexible.
+%9(b): inverses in number fields; algebraic numbers as a structure.
+%15: standard inverse manipulation identity.
+%16: order and exponent relation; basic cyclic group intuition.
+\documentclass{article}
+\title{Part I - Group Theory}
+
+\usepackage[letterpaper, margin=0.75in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage{hhline}
+\usepackage[shortlabels]{enumitem}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage[bookmarks,hypertexnames=false,debug,linktocpage=true,hidelinks]{hyperref}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{titlesec}
+
+\newcommand{\oper}{\star}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\posints}{\mathbb{Z}^{+}}
+\newcommand{\intspos}{\posints}
+\newcommand{\rats}{\mathbb{Q}}
+\newcommand{\eqcl}{\overline}
+\newcommand{\sqrtt}{\sqrt 2}
+\newcommand{\inv}[1]{ {#1}^{-1} }
+\newcommand{\abs}[1]{| #1 |}
+\newcommand{\mult}{\star}
+\newcommand{\iso}{\cong}
+\newcommand{\set}[1]{ \{ #1 \} }
+\newcommand{\infy}{\infty}
+\newcommand{\ntimes}[2]{\underbrace{#1}_{#2 \text{ times}}}
+\newcommand{\ntimesmult}[2]{\ntimes{#1\cdots #1}{#2}}
+\newcommand{\wlg}{\textit{w.l.g}}
+\newcommand{\intsmodn}[1]{\ints/#1\ints}
+\newcommand{\finitefield}{\mathbb{F}}
+\newcommand{\finfield}{\finitefield}
+\newcommand{\nozeroes}[1]{#1^{\times}}
+\newcommand{\genlin}{GL}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Introduction to Groups}
+\subsection{Basic Axioms and Examples}
+\subsubsection{}\label{ex1p1}
+\begin{enumerate}[(a)]
+	\item No. $(5-4)-1 = 1-1 = 0$ but $5-(4-1) = 5-3 = 2$
+	\item Yes.
+		\begin{align*}
+			(a\oper b)\oper c &= (a+b+ab)\oper c\\
+			&= a+b+ab+c+(a+b+ab)c\\
+			&= a+b+ab+c+ac+bc+abc & \text{Distributive property of $\reals$}\\
+			&= a+b+c+bc+ab+ac+abc & \text{Commutativity of $+$ in $\reals$}\\
+			&= a+b+c+bc+a(b+c+bc) \\
+			&= a\oper (b+c+bc) \\
+			&= a\oper (b\oper c)
+		\end{align*}
+	\item No. $(1\oper 2)\oper 3 = \frac{1+2}{5} \oper 3 = \frac{3}{5}\oper 3 =\frac{\frac{3}{5} + 3}{5} = \frac{18}{5}$. But $1\oper (2\oper 3) = 1\oper \frac{2+3}{5} = 1\oper 1 = \frac{1+1}{5} = \frac{2}{5}$.
+	\item
+		Yes.
+		\begin{align*}
+			[(a,b)\oper (c,d)]\oper (e,f) &= (ad+bc,bd)\oper (e,f)\\
+			&= ((ad+bc)f+(bd)e,(bd)f)\\
+			&= (adf+bcf+bde,bdf)\\
+			&= (a(df)+b(cf+de),b(df))\\
+			&= (a,b)\oper (cf+de,df)\\
+			&= (a,b)\oper [(c,d)\oper (e,f)]
+		\end{align*}
+	\item
+		No. $(1\oper 2)\oper 3 = \frac{1}{2}\oper 3 = \frac{\frac{1}{2}}{3} = \frac{1}{6}$. But $1\oper (2\oper 3) = 1\oper \frac{2}{3} = \frac{1}{\frac{2}{3}} = \frac{3}{2}$
+\end{enumerate}
+\stepcounter{subsubsection}\label{ex1p2}
+\subsubsection{}\label{ex1p3}
+	\begin{align*}
+		(\eqcl a + \eqcl b) + \eqcl{c} &= (\eqcl{a+b}) + \eqcl{c}\\
+		&= \eqcl{(a+b)+c}\\
+		&= \eqcl{a+(b+c)} & \text{associativity of $+$ in $\ints$}\\
+		&= \eqcl{a}+\eqcl{b+c}\\
+		&= \eqcl{a}+(\eqcl{b}+\eqcl{c})\\
+	\end{align*}
+\subsubsection{}\label{ex1p4}
+	\begin{align*}
+		(\eqcl a \cdot \eqcl b) \cdot \eqcl{c} &= (\eqcl{a\cdot b}) \cdot \eqcl{c}\\
+		&= \eqcl{(a\cdot b)\cdot c}\\
+		&= \eqcl{a\cdot(b\cdot c)} & \text{associativity of $\cdot$ in $\ints$}\\
+		&= \eqcl{a}\cdot\eqcl{b\cdot c}\\
+		&= \eqcl{a}\cdot(\eqcl{b}\cdot\eqcl{c})\\
+	\end{align*}
+\subsubsection{}\label{ex1p5}
+$\eqcl 0$ has no multiplicative inverse 
+\stepcounter{subsubsection}\label{ex1p6}
+\stepcounter{subsubsection}\label{ex1p7}
+\stepcounter{subsubsection}\label{ex1p8}
+\subsubsection{}\label{ex1p9}
+	\begin{enumerate}[(a)]
+		\item
+		\begin{itemize}
+			\item $(a+b\sqrt{2}) + (c+d\sqrt{2}) = a+b\sqrt{2} + c+d\sqrt{2} = a+c + b\sqrt{2} + d\sqrt{2} = (a+b) + (b+d)\sqrt{2} \in G$, so the operation is closed under addition.
+			\item Associativity follows directly from associativity in $\reals$
+			\item $0 = 0+\sqrt{2}$ is clearly an identity
+			\item $-a+(-b)\sqrt{2}$
+		\end{itemize}
+		\item To help us, we prove the following lemma
+			\begin{lemma}\label{lemma:1p1p9}
+				Given $a,b \in \rats$, $a+b\sqrtt \in G \iff a \neq 0$ or $b \neq 0$
+			\end{lemma}
+			\begin{proof}
+				For $\implies$, if we had both $a,b=0$, then we'd have $a+b\sqrt{2} = 0 + 0\sqrt{2} = 0 \notin G$. For $\impliedby$, assume without generality that $a\neq 0$. Then $a+b\sqrt{2} = 0$ would mean that $a=-b\sqrt{2}$. However, since $b$ is rational, $-b\sqrt{2}$ is irrational. But $a$ is rational, so they can't be equal. 
+			\end{proof}
+		\begin{itemize}
+			
+			\item Let $a,b\in\rats$ not both be zero and $c,d\in\rats$ not both be zero. Then $(a+b\sqrt{2})(c+d\sqrt{2})=ac+bc\sqrt{2}+ad\sqrt{2}+2bd=(ac+2bd) + (ad+bc)\sqrt{2}$. The result is nonzero thanks to the zero product property in $\reals$. Hence, the operation is closed under multiplication
+			\item Associativity follows directly from associativity of multiplication in $\reals$
+			\item The identity is clearly $1=1+0\sqrt{2}$
+			\item To find an inverse, we note that the inverse of $a+b\sqrt{2}$ in $\reals$ is $\frac{1}{a+b\sqrt{2}}$ (note, we have $a+b\sqrt{2} \neq 0$). Now we "rationalize.":
+				\begin{align*}
+					&= \frac{1}{a+b\sqrt{2}} \\
+					&= \frac{1}{a+b\sqrt{2}}(\frac{a-b\sqrt{2}}{a-b\sqrt{2}}) & \text{Possible by \cref{lemma:1p1p9}}\\
+					&= \frac{a-b\sqrt{2}}{(a+b\sqrtt)(a-b\sqrtt)}\\
+					&= \frac{a-b\sqrt{2}}{a^2 - 2b^2}\\
+					&= \frac{a}{a^2 - 2b^2}+ \frac{-b}{a^2 - 2b^2}\sqrt{2}\\
+				\end{align*}
+		\end{itemize}
+	\end{enumerate}
+\stepcounter{subsubsection}\label{ex1p10}
+\stepcounter{subsubsection}\label{ex1p11}
+\stepcounter{subsubsection}\label{ex1p12}
+\stepcounter{subsubsection}\label{ex1p13}
+\stepcounter{subsubsection}\label{ex1p14}
+\subsubsection{}\label{ex1p15}
+	Clearly this holds for $n=1$. Now suppose $\inv{(a_1\cdots a_{n-1})}=\inv{a_{n-1}}\cdots\inv{a_1}$. Then
+	\begin{align*}
+		(\inv{a_n}\inv{a_{n-1}}\cdots\inv{a_1})(a_1\cdots a_{n-1}a_n)
+		&= \inv{a_n}(\inv{a_{n-1}}\cdots\inv{a_1})(a_1\cdots a_{n-1})a_n & \text{Associativity}\\
+		&= \inv{a_n}\inv{(a_1\cdots a_{n-1})}(a_1\cdots a_{n-1})a_n\\
+		&= \inv{a_n}1a_n\\
+		&= \inv{a_n}a_n\\
+		&= 1
+	\end{align*}
+\subsubsection{}\label{ex1p16}
+	\begin{itemize}
+		\item First suppose that $x^2 = 1$
+		\begin{itemize}
+		\item Case: $x=1$. Then $x^1 = 1$. Hence $\abs{x}=1$
+		\item Case: $x\neq 1$. Then $x^1 \neq 1$. But $x^2 = 1$. Hence $\abs{x}=2$
+		\end{itemize}
+		\item Now suppose $\abs{x}=1$ or $2$
+		\begin{itemize}
+		\item Case: $\abs{x}=1$. Then $x^1 = 1 \implies x = 1$, and $x^2=1^1=1$
+		\item Case: $\abs{x}=2$. Then $x^2=1$ by definition
+		\end{itemize}
+	\end{itemize}
+\subsubsection{}\label{ex1p17}
+	\begin{align*}
+		x^{n-1}x &= x^n\\
+		&= 1
+	\end{align*}
+	Hence $x^{n-1} = \inv{x}$
+\stepcounter{subsubsection}\label{ex1p18}
+
+\subsubsection{}\label{ex1p19}
+	\begin{enumerate}[(a)]
+		\item \label{a}
+			\begin{align*}
+				x^ax^b &= (\ntimes{x\cdots x}{a})(\ntimes{x\cdots x}{b})\\
+				&= \ntimes{x\cdots x}{a+b}\\
+				&= x^{a+b}
+			\end{align*}
+			And
+			\begin{align*}
+				(x^a)^b &= \ntimes{x^a\cdots x^a}{b}\\
+				&= \ntimes{\ntimes{x}{a}\cdots\ntimes{x}{a}}{b}\\
+				&= \ntimes{x\cdots x}{a\cdot b}\\
+				&= x^{ab}
+			\end{align*}
+		\item \label{b}
+			Clearly works for $a=1$. Now suppose that $\inv{(x^{a-1})} = x^{-(a-1)}$. Then
+			\begin{align*}
+				x^{-a}x^a &= (\ntimes{\inv{x}\cdots\inv{x}}{a})x^a & \text{By definition}\\
+				&= (\inv{x}\ntimes{\inv{x}\cdots\inv{x}}{a-1})x^{a-1}x \\
+				&= \inv{x}x^{-(a-1)}x^{a-1}x & \text{Definition}\\
+				&= \inv{x}\inv{ (x^{a-1}) }x^{a-1}x & \text{Inductive assumption}\\
+				&= \inv{x}1x & \\
+				&= \inv{x}x & \\
+				&= 1
+			\end{align*}
+		\item \label{c}
+			Fuck my life bro. This is more annoying that it seems.
+			\begin{enumerate}[i]
+				\item We first show that $x^ax^b=x^{a+b}$ for all $a,b\in\ints$. We go by cases.
+					\begin{enumerate}[(1)]
+						\item \label{case1} Case: $a=0$ or $b=0$. Assume $a=0$ without loss of generality. Then $x^ax^b=x^0x^b=1x^b=x^b=x^{0+b}=x^{a+b}$.
+						\item \label{bothneg} Case: Both $a,b<0$. Then let $c=-a,d=-b$. Then
+							\begin{align*}
+								x^a x^b &= x^{-c}x^{-d}\\
+								&= (\inv{x})^{c}(\inv{x})^{d} & \text{Definition}\\
+								&= (\inv{x})^{c+d} & \text{By \ref{a}}\\
+								&= x^{-(c+d)} & \text{Definition}\\
+								&= x^{-c-d} \\
+								&= x^{a+b} \\
+							\end{align*}
+						\item \label{case2} Case: One is negative, one is positive. Assume without loss of generality that $a<0,b>0$. We proceed by induction on $b$. We can take $b=0$ to be the base case (we've already shown it in the Case \ref{case1}) and then assume that $x^ax^{b-1}=x^{a+b-1}$. Then
+							\begin{align*}
+								x^ax^b &= x^ax^{b-1}x\\
+								&= x^{a+b-1}x\\
+							\end{align*}
+							Okay, so if $a+b-1 > 0$, this is just \ref{a}. If $a+b-1=0$, this is just Case \ref{case1}. So we have to deal with the case $a+b-1<0$. Then
+							\begin{align*}
+								x^{a+b-1}x &= \ntimesmult{\inv{x}}{-(a+b-1)} \\
+								&= \ntimesmult{\inv{x}}{1-a-b}x \\
+								&= \ntimesmult{\inv{x}}{1-a-b-1} \\
+								&= \ntimesmult{\inv{x}}{-a-b} \\
+								&= \ntimesmult{\inv{x}}{-(a+b)} \\
+								&= \ntimesmult{x}{a+b} \\
+							\end{align*}
+					\end{enumerate} %Cases
+				\item Alright, now time for $(x^a)^b = x^{ab}$. We proceed by cases again
+					\begin{enumerate}[(1)]
+						\item Case: $a=0$. Then $(x^a)^b = (x^0)^b = 1^b = 1 = x^0 = x^{0b} = x^{ab}$
+						\item Case: $b=0$. Then $(x^a)^b = (x^a)^0 = 1 = x^0 = x^{a0} = x^{ab}$
+						\item Case: $a<0, b>0$. Let $c=-a$ Then
+							\begin{align*}
+								(x^a)^b &= (x^{-c})^b\\
+								&= ( (\inv{x})^c)^b & \text{Definition}\\
+								&=  (\inv{x})^{cb} & \text{By \ref{a}}\\
+								&=  {x}^{-cb} & \text{Definition}\\
+								&=  {x}^{ab}
+							\end{align*}
+						\item \label{lolcase} Case: $a>0,b<0$. Let $c=-b$. I REGRET DOING THIS EXERCISE. I REGRET DOING THIS EXERCISE. Then
+							\begin{align*}
+								(x^a)^b &= (x^a)^{-c}\\
+								&= \inv{((x^a)^c)} & \text{By \ref{b}}\\
+								&= \inv{((x^{ac})} & \text{By \ref{a}}\\
+								&= x^{-ac} & \text{By \ref{b}}\\
+								&= x^{ab}
+							\end{align*}
+						\item Case: $a,b < 0$. Let $c=-a$. Then
+							\begin{align*}
+								(x^a)^b &= (x^{-c})^b\\
+								&= ((\inv{x})^c)^b & \text{Definition}\\
+								&= (\inv{x})^{cb} & \text{By the previous case, Case \ref{lolcase}}\\
+								&= x^{-cb} & \text{Definition}
+								&= x^{ab} 
+							\end{align*}
+					\end{enumerate} %Cases
+					And we're done. I regret doing this exercise. 
+			\end{enumerate} %Part (c)
+	\end{enumerate}
+	We will use the results of this exercise without referring to it from here on.
+\subsubsection{}\label{ex1p20}
+	\begin{itemize}
+		\item Suppose $\abs{x}=\infy$. Then suppose $\abs{\inv{x}} = n$ for $n\in\posints$. Then
+			\begin{align*}
+				\inv{(\inv{x})} &= (\inv{x})^{n-1} & \text{by \ref{ex1p17}}\\
+				\implies x &= x^{-n+1}\\
+				\implies x^{n-1}x &= x^{n-1}x^{-n+1} \\
+				\implies x^{n} &= x^{n-1-n+1} \\
+				&= x^{0}\\
+				&= 1
+			\end{align*}
+			Hence $\abs{x} \leq n$, a contradiction. So we can't have $n\in\posints$, so $n=\infy$
+		\item Suppose $\abs{x}=n\in\posints$. Then let $\abs{\inv{x}}=l$. Then
+			\begin{align*}
+				(\inv{x})^l &= x^{-l}\\
+				\implies l &= \inv{(x^{l})} \\
+				\implies x^l &= x^l\inv{(x^l)} \\
+				\implies x^l &= 1 \\
+			\end{align*}
+			So $l=kn$ for some $k \in \posints$. I.e. $l \geq n$. But
+				\begin{align*}
+					(\inv{x})^n &= x^{-n}\\
+					&= \inv{(x^n)}\\
+					&= \inv{1}\\
+					&= 1
+				\end{align*}
+				So $l \leq n$. So we must have $l=n$
+	\end{itemize}
+\subsubsection{}\label{ex1p21}
+	Since $n$ is odd, let $n=2s+1$ for $s \in \posints$ Then
+		\begin{align*}
+			x^n &= x^{2s+1}\\
+		\implies 1 &= x^{2s+1}\\
+		\implies x &= x^{2s+2}\\
+		&= x^{2(s+1)}\\
+		&= (x^2)^{s+1}
+		\end{align*}
+\stepcounter{subsubsection}\label{ex1p22}
+\subsubsection{}\label{ex1p23}
+	Let $\abs{x^s}=r$. Then $(x^s)^t = x^{st} = x^n = 1$, so $r \leq t$. But note that $k=r$ is the lowest positive integer for which
+		\begin{equation}
+			(x^s)^k = 1
+		\end{equation}
+		holds. However, we showed that $k=t$ also makes the equation true, so $t\geq r$. Hence $t=r$
+\stepcounter{subsubsection}\label{ex1p24}
+\subsubsection{}\label{ex1p25}
+	Given $a,b \in G$,
+	\begin{align*}
+		(ab)(ba) &= ab^2a\\
+		&=a1a\\
+		&= a^2\\
+		&=1\\
+		\implies (ab)(ab)(ba) &= ab\\
+		\implies (ab)^2(ba) &= ab\\
+		\implies 1(ba) &= ab\\
+		\implies ba &= ab
+	\end{align*}
+\subsubsection{}\label{ex1p26}
+	\begin{itemize}
+		\item Closure under the operation is given by the definition
+		\item Associativity is directly inherited from $G$
+		\item Inverses exist as given by the definition
+		\item The identity exists. Note that by definition, $H$ is closed under the operation and inverses. We were also given that $H$ is nonempty, so we can take some $h\in H$, and note that $\inv{h}\in H$ as well. So $h\inv{h} \in H$, i.e. $1 \in H$.
+	\end{itemize}
+\subsubsection{}\label{ex1p27}
+	Let $H=\set{x^n | n \in \ints}$. 
+		\begin{itemize}
+			\item $H$ is closed under the operation. Let $x^n, x^m \in H$. then $x^nx^m = x^{n+m} \in H$.
+			\item $H$ is closed under inverses. Given $x^n$, note that $x^{-n} \in H$, which is clearly its inverse.
+		\end{itemize}
+\stepcounter{subsubsection}\label{ex1p28}
+\subsubsection{}\label{ex1p29}
+	\begin{itemize}
+		\item $\impliedby$: If $A, B$ abelian, given $(a,b), (c,d) \in A\times B$, we have $(a,b)(c,d)=(ac,bd)=(ca,db)=(c,d)(a,b)$
+		\item $\implies$: Now assume without loss off generality that $B$ is not abelian (e.g. space of invertible matrices), and take any $b,d \in B$ such that $bd \neq db$. Then $(a,b)(c,d)=(ac,bd)$. But $(c,d)(a,b) = (ca, db) = (ac, db)$. Note that by definition of $A\times B$, since $bd\neq db$, we have $(ac,bd) \neq (ac, db)$.
+	\end{itemize}
+\subsubsection{}\label{ex1p30}
+	$(a,1)(1,b) = (a\cdot 1, 1\cdot b) = (1\cdot a, b\cdot 1) = (1,b)(a,1)$, so these elements commute. Note let $A=\abs{a}, B=\abs{b}, l = \abs{(a,b)}$. Note that
+	\begin{align*}
+		1 &= (a,b)^l\\
+		&= [(a,1)(1,b)]^l\\
+		&= (a,1)^l(1,b)^l & \text{By the commutativity we just proved}\\ 
+		&= (a^l,1)(1,b^l)\\
+\iff (1,1) &= (a^l,b^l)
+	\end{align*}
+	Which happens iff $a^l =1, b^l = 1$. I.e. iff $l =qA=tB$, for some positive integers $q,t$. I.e. iff $l$ is a multiple of both $A$ and $B$, i.e. $l$ is a common multiple of $A,B$. But $l$ is the \textit{smallest} positive integer for which this holds, i.e. $l$ must be the \textit{least} common multiple of $A$ and $B$.
+\subsubsection{}\label{ex1p31}
+	We follow the hint and let $t(G) = \set{g\in G | g\neq\inv{g}}$. Note that the elements of $t(G)$ come in pairs ($g$ and $\inv{g}$), hence its cardinality must be even.\\
+	Now let $g \in G-t(G)$ with $g \neq 0$. Does such an element exist? Since $1 \in t(G)$, we do have $\abs{G} > t(G)$. If $\abs{G} = t(G) + 1$, then $G$ would be odd, a contradiction. So we must have $\abs{G} \geq t(G) + 2$, i.e. $G-t(G)$ has at least one nonidentity element $g$, and for this element we have $g=\inv{g} \implies g^2 = 1$.
+\subsubsection{}\label{ex1p32}
+	Suppose $x^k=x^l$, with $0\leq k \leq l \leq n-1$. Then
+	\begin{align*}
+		x^k &= x^l\\
+	\implies 1&= x^{l-k}\\
+	\implies l-k &= rn
+	\end{align*}
+	Where $r \in Z$. Since $l \geq k$, we must have $r \geq 0$. Now suppose $r>0$. Then $l=rn+k > n-1$, a contradiction. Hence $r=0$ and $l-k=0$ i.e. $l=k$.\\
+	Now if $\abs{x} > \abs{G}$, then the elements $1,x,\ldots,x^{n-1}$ would comprise $n > \abs{G}$ distinct elements in $G$, which is impossible.
+\subsubsection{}\label{ex1p33}
+	
+		A lemma will help us here.
+		\begin{lemma}\label{lemma:1p32}
+			For $i=1,2,\ldots,n-1$, if $x^i=x^{-i}$, then $2i=n$.
+		\end{lemma}
+		\begin{proof}
+			\begin{align*}
+				x^i &= x^{-i}\\
+				\implies x^{2i} &= 1\\
+				\implies 2i &= rn & \text{for some $r\in \ints$}
+			\end{align*}
+			We must show that $r =1$, and we're done. If $r \leq 0$, this would contradict $1\leq i < n$.\\If $r \geq 2$, then
+			\begin{align*}
+				2i &= rn\\
+				\implies i &= \frac{r}{2}n\\
+				&> \frac{2}{2}n\\
+				= n
+			\end{align*}
+			which again contradicts $1 \leq i < n$. So we must have $r=1$
+		\end{proof}
+		\begin{enumerate}[(a)]
+		\item With $n$ odd, suppose $x^i = x^{-i}$. Then applying the lemma yields $2i=n$, making $n$ even, a contradiction.
+		\item With $n$ even, for $\implies$, suppose $x^i = x^{-i}$. Applying the lemma again yields
+			\begin{align*}
+				2i &= n\\
+				&= 2k\\
+				\implies i &= k
+			\end{align*}
+		Now for $\impliedby$, suppose $i=k$. Then
+			\begin{align*}
+				1 &= x^n\\
+				&= x^{2k}\\
+				&= x^{2i}\\
+				\implies x^{-i} &= x^i
+			\end{align*}
+	\end{enumerate}
+\subsubsection{}\label{ex1p34}
+	Let $n,m \in \ints$. Assume \wlg $m \geq n$. Then
+	\begin{align*}
+		x^n &= x^m\\
+		\implies 1 &= x^{m-n}
+	\end{align*}
+	Since $m \geq n$, we have $m-n\geq 0$ If $m-n>0$, then $\abs{x} \leq m-n$, contradicting $\abs{x}=\infy$. Hence $m-n =0$, i.e. $m=n$
+\subsubsection{}\label{ex1p35}
+	Let $l \in \ints$. Then by Euclidean division, $l=kn+r$ with $0\leq r < n$. So
+	\begin{align*}
+		x^l &= x^{kn+r}\\
+		&= x^{kn}x^r\\
+		&= (x^n)^kx^r\\
+		&= (1)^kx^r\\
+		&= 1x^r\\
+		&= x^r\\
+	\end{align*}
+
+\stepcounter{subsection}
+\stepcounter{subsection}
+\subsection{Matrix Groups}
+\subsubsection{}\label{ex4p1}
+Since $\finfield_2 = \set{0,1}$, it's straightforward to exhaust the elements of $GL_2(\finfield_2)$ by "turning on/off" the entries. These elements are:
+\begin{align*}
+I &= \begin{pmatrix}
+1 & 0\\
+0 & 1
+\end{pmatrix}\\
+A &= \begin{pmatrix}
+0 & 1\\
+1 & 0
+\end{pmatrix}\\
+B &= \begin{pmatrix}
+0 & 1\\
+1 & 1
+\end{pmatrix}\\
+C &= \begin{pmatrix}
+1 & 0\\
+1 & 1
+\end{pmatrix}\\
+D &= \begin{pmatrix}
+1 & 1\\
+0 & 1
+\end{pmatrix}\\
+E &= \begin{pmatrix}
+1 & 1\\
+1 & 0
+\end{pmatrix}\\
+\end{align*}
+Any other possible element's determinant is 0
+\subsubsection{}\label{ex4p2}
+We already listed the elements above. Simple computation gives us $\abs{I}=1$, $\abs{A}=\abs{C}=\abs{D} = 2$, $\abs{B}=\abs{E}= 3$
+\subsubsection{}\label{ex4p3}
+We'll take the following lemma for granted moving forward:
+\begin{lemma}
+In a field $F$, $0 \neq 1$
+\end{lemma}
+\begin{proof}
+If $0=1$ in $F$, then $\nozeroes{F}=F-\set{0}$ does not contain the multiplicative identity, and therefore $\nozeroes{F}$ is not an abelian group, violating the first condition in the definition of a field.
+\end{proof}
+Let $x=\begin{pmatrix}1 & 1\\0 & 1\end{pmatrix}$ and $y=\begin{pmatrix}1 & 1\\1 & 0\end{pmatrix}$. Then the top left entry of $xy$ is $2=0$ but the top left entry of $yx$ is $1$. Since $1\neq 0$ in a field, $xy \neq yx$.
+\subsubsection{}\label{ex4p4}
+Let $n=ab$ where $a,b \neq 1$. Suppose there was some $l \in \ints$ such that
+\begin{align*}
+\eqcl{a}\cdot\eqcl{l} &= \eqcl{1}\\
+\implies \eqcl{al} &= \eqcl{1}\\
+\implies \eqcl{al} - \eqcl{1} &= \eqcl{0}\\
+\implies \eqcl{al-1} &= \eqcl{0}\\
+\implies al-1 &= qn & \mbox{for some integer $q$}\\
+&=qab\\
+\implies al-abq &= 1\\
+\implies a(l-bq) &= 1
+\end{align*}
+Since $a \neq 1$ and $l-bq$ must be an integer, this is impossible. Thus $\eqcl{a}$ does not have a multiplicative inverse, so $\intsmodn{n}$ cannot be a field.
+\subsubsection{}\label{ex4p5}
+\begin{itemize}
+\item $\impliedby$: If $\abs{F}=q$ is finite, then there are at most $q$ possibilities for each entry of an element from $GL_n(F)$, therefore $\abs{GL_n(F)} \leq q^{n^2}$. In fact, since the $0$ matrix is non-invertible, we can make this a strict inequality:
+\begin{equation}
+\abs{GL_n(F)} < q^{n^2} \label{eq:stupidineq}
+\end{equation}
+\item $\implies$: If $F$ is infinite consider the correspondence $\nozeroes{F} \to \genlin_n(F)$ given by 
+\begin{equation}
+f \mapsto \begin{pmatrix}
+f & \cdots & 0\\
+\vdots & \ddots & \vdots\\
+0 & \cdots & f
+\end{pmatrix}
+\end{equation}
+I.e. $f$ on the diagonal and $0$s everywhere else, in case that wasn't clear.\\
+This is an injective group homomorphism, or just note that it clearly embeds $\nozeroes{F}$ into $\genlin_n(F)$ as a subgroup. Therefore, we have an infinite subgroup of $\genlin_n(F)$, making $\genlin_n(F)$ infinite.
+\end{itemize}
+\subsubsection{}\label{ex4p6}
+Already shown in the previous exercise by by \cref{eq:stupidineq}.
+\subsubsection{}\label{ex4p7}
+The total number of $2\times 2$ matrices over $\finfield_p$ is clearly $p^4$ (as we went over in the above 2 exercises).\\
+Now we count all the noninvertible matrices, taking note that a $2\times 2$ is noninvertible $\iff$ one row is a multiple of the other. Let's proceed by cases.
+\begin{itemize}
+\item Select for all the matrices whose top two entries are both nonzero: $(p-1)(p-1)$. To get the noninvertible matrices of this form, we take a multiple of the top row as the bottom row, so there are $p$ choices for the bottom row (since there are $p$ multiples of the top row), hence the total number of matrices in this case is $p(p-1)(p-1) = p^3 -2p^2+p$. The following cases proceed similarly.
+\item Matrices where top-left entry is $0$ and top-right entry is nonzero: $p-1$ choices for the top row, and we take multiples for the bottom row so in total $p(p-1)$ matrices
+\item Matrices where top-left entry is nonzero and top-right entry is $0$. Analagous to the above case, yielding again $p(p-1)$ matrices
+\item Lastly, consider the matrices where the top entries are both $0$. Then any entries for the bottom row work. there are two entries in the bottom row, so $p^2$ matrices
+\end{itemize}
+Adding these all together, we get
+\begin{align*}
+(p^3 - 2p^2 +p) + (p^2-p) + (p^2-p) + p^2 &= p^3-2p^2+p^2+p^2+p^2+p-p-p\\
+&=p^3-2p^2+3p^2-p\\
+&=p^3+p^2-p
+\end{align*}
+We subtract this result (number of noninvertible matrices) to the total number of matrices to obtain the number of invertible matrices:
+\begin{equation}
+p^4 - (p^3+p^2-p) = p^4-p^3-p^2+p
+\end{equation}
+\subsubsection{}\label{ex4p8}
+We'll also take the following lemma for granted
+\begin{lemma}\label{lemma:1neq2}
+In a nontrivial field $F$, $n \neq n+1$
+\end{lemma}
+\begin{proof}
+\begin{align*}
+n &= n+1\\
+\implies 0 &= 1\\
+\end{align*}
+which we can't have in a field
+\end{proof}
+Let $p$ be the identity matrix except that the toprightmost entry is $1$. Let $q$ be the identity matrix except the bottomleftmost entry is $1$. The topleft entry of $qp$ is $1$ but the topleft entry of $pq$ is $2$. They cannot be equal because of the lemma, and hence $qp\neq pq$
+\subsubsection{}\label{ex4p9}
+The following proof works for matrices over any field $F$
+\begin{align*}
+[\begin{pmatrix}a & b\\c & d\end{pmatrix}\begin{pmatrix}e & f\\g & h\end{pmatrix}
+]\begin{pmatrix}i & j\\k & l\end{pmatrix}
+&= \begin{pmatrix}ae+bg & af+bh\\ce+dg & cf+dh\end{pmatrix}
+\begin{pmatrix}i & j\\k & l\end{pmatrix}\\
+&= \begin{pmatrix}aei+bgi +afk+bhk & aej+bgj+afl+bhl\\cei+dgi+cfk+dhk & cej+dgj+cfl+dhl\end{pmatrix}\\
+&= \begin{pmatrix}a(ei+fk)+b(gi+hk) & a(ej+fl)+b(gj+hl)\\c(ei+fk)+d(gi+hk) & c(ej+fl)+d(gj+hl)\end{pmatrix}\\
+&=
+\begin{pmatrix}
+a & b\\c & d
+\end{pmatrix}
+\begin{pmatrix}ei+fk & ej+fl\\gi+hk & gj+hl\end{pmatrix}\\
+&=
+\begin{pmatrix}a & b\\c & d\end{pmatrix}[\begin{pmatrix}e & f\\g & h\end{pmatrix}
+\begin{pmatrix}i & j\\k & l\end{pmatrix}]
+\end{align*}
+\subsubsection{}\label{ex4p10}
+\begin{enumerate}[(a)]
+\item
+\begin{equation}\label{eq:uppertriang2}
+\begin{pmatrix}
+a_1 & b_1\\
+0 & c_1
+\end{pmatrix}
+\begin{pmatrix}
+a_2 & b_2\\
+0 & c_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+a_1a_2 & a_1b_2 + b_1c_2\\
+0 & c_1c_2
+\end{pmatrix}
+\end{equation}
+Since $a_1,a_2,c_1,c_2 \neq 0$, we have $a_1a_2 \neq 0$ and $c_1c_2 \neq 0$, so the result is still in $G$ (So $G$ is closed under matrix multiplication)
+\item Note: $a,c \neq 0$, and we need
+\begin{align*}
+\begin{pmatrix}
+a & b\\
+0 & c
+\end{pmatrix}
+\begin{pmatrix}
+e & f\\
+0 & g
+\end{pmatrix}
+&= 
+\begin{pmatrix}
+1 & 0\\
+0 & 1
+\end{pmatrix}\\
+\iff
+\begin{pmatrix}
+ae & af+bg\\
+0 & cg
+\end{pmatrix}
+&= 
+\begin{pmatrix}
+1 & 0\\
+0 & 1
+\end{pmatrix}\\
+\end{align*}
+Which is true iff the following system of equations hold
+\begin{align*}
+ae &= 1\\
+af + bg &= 0\\
+cg &= 1
+\end{align*}
+Since $a,c\neq 0$, we can divide by them to obtain 
+\begin{align*}
+e &= 1/a\\
+f &= \frac{-bg}{a}\\
+g &= 1/c
+\end{align*}
+We substitute $g = 1/c$ into the second equation to obtain $f=\frac{-b}{ca}$. Note that all the work can be connected by iffs. Hence, we have
+\begin{equation}\label{eq:uppertriang2inverse}
+\begin{pmatrix}
+a & b\\0 & c
+\end{pmatrix}^{-1}
+=
+\begin{pmatrix}
+1/a & \frac{-b}{ac}\\0 & 1/c
+\end{pmatrix}
+\end{equation}
+\item In exercise \ref{ex1p26} we showed that closure under the operation and inverses means that it is a subgroup
+\item 
+\begin{itemize}
+\item Closure under multiplication: Take \cref{eq:uppertriang2} and make $c_1=a_1$ and $c_2=a_2$, so the result becomes %$\begin{pmatrix}a_1a_2 & a_1b_2 + b_1a_2\\0 & a_1a_2\end{pmatrix}$
+\begin{equation}\label{eq:uppertriang2}
+\begin{pmatrix}
+a_1 & b_1\\
+0 & a_1
+\end{pmatrix}
+\begin{pmatrix}
+a_2 & b_2\\
+0 & a_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+a_1a_2 & a_1b_2 + b_1c_2\\
+0 & a_1a_2
+\end{pmatrix}
+\end{equation}
+which is clearly in $G$ because the diagonal entries are equal.
+\item Closure under inverses: Take \cref{eq:uppertriang2inverse} and make $c=a$, so we get
+\begin{equation}
+\begin{pmatrix}
+a & b\\0 & a
+\end{pmatrix}^{-1}
+=
+\begin{pmatrix}
+1/a & \frac{-b}{a^2}\\0 & 1/a
+\end{pmatrix}
+\end{equation}
+Again, the inverse is clearly in $G$ because the diagonals are equal.
+\end{itemize}
+\end{enumerate}
+\subsubsection{}\label{ex4p11}
+\newcommand{\abcberg}{
+\begin{pmatrix}
+1 & a & b\\
+0 & 1 & c\\
+0 & 0 & 1
+\end{pmatrix}}
+\begin{enumerate}[(a)]
+\item 
+\begin{align}
+XY &= 
+\begin{pmatrix}
+1 & a & b\\
+0 & 1 & c\\
+0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & d & e\\
+0 & 1 & f\\
+0 & 0 & 1
+\end{pmatrix}\\
+&=
+\begin{pmatrix}\label{eq:heisenberg}
+1 & a+d & e+af+b\\
+0 & 1 & c+f\\
+0 & 0 & 1
+\end{pmatrix}
+\end{align}
+Which is still clearly in $H(F)$, making it closed under matrix multiplication. Also note that 
+\begin{equation}
+YX = 
+\begin{pmatrix}
+1 & a+d & b+cd+e\\
+0 & 1 & c+f\\
+0 & 0 & 1
+\end{pmatrix}
+\end{equation}
+Now note that
+\begin{align*}
+XY &= YX\\
+\iff e+af+b &= b+cd+e\\
+\iff af &= cd
+\end{align*}
+So no matter what field $F$, we're using, we can let $a,f=0$ and $c,d=1$ to obtain $XY\neq YX$. Explicitly, an example of two matrices that don't commute is:
+\begin{align*}
+X &= \begin{pmatrix}
+1 & 0 & 0\\
+0 & 1 & 1\\
+0 & 0 & 1
+\end{pmatrix}\\
+Y &= \begin{pmatrix}
+1 & 1 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}
+\end{align*}
+\item Using \cref{eq:heisenberg}, We need
+\begin{equation}
+\begin{pmatrix}
+1 & a+d & b+cd+e\\
+0 & 1 & c+f\\
+0 & 0 & 1
+\end{pmatrix} = 
+\begin{pmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}
+\end{equation}
+i.e. we obtain a system of equations and solve:
+\begin{align*}
+a+d &= 0 &\iff d &= -a\\
+c+f&=0 &\iff f&=-c\\
+e+af+b&=0 &\iff e&=-af-b=ac-b
+\end{align*}
+I.e.
+\begin{equation}\label{heisenberginverse}
+\inv{X} =
+\begin{pmatrix}
+1 & -a & ac-b\\
+0 & 1 & -c\\
+0 & 0 & 1
+\end{pmatrix}
+\end{equation}
+\item Let $X,Y$ be as given and let $Z = 
+\begin{pmatrix}
+1 & g & h\\
+0 & 1 & i\\
+0 & 0 & 1
+\end{pmatrix}$. Then, using \cref{eq:heisenberg} again,
+\begin{align*}
+(XY)Z &= 
+\begin{pmatrix}
+1 & a+d & e+af+b\\
+0 & 1 & c+f\\
+0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & g & h\\
+0 & 1 & i\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= \begin{pmatrix}
+1 & g+a+d & h+i(a+d)+e+af+b\\
+0 & 1 & i+c+f\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= \begin{pmatrix}
+1 & a+d+g & h+ia+id+e+af+b\\
+0 & 1 & c+f+i\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= \begin{pmatrix}
+1 & a+d+g & a(f+i) + b + h+id+e
+0 & 1 & c+f+i\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= 
+\begin{pmatrix}
+1 & a & b\\
+0 & 1 & c\\
+0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & d+g & h+id+e
+0 & 1 & f+i\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= 
+X[
+\begin{pmatrix}
+1 & d & e\\
+0 & 1 & f\\
+0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & g & h\\
+0 & 1 & i\\
+0 & 0 & 1
+\end{pmatrix}]\\
+&= X(YZ)
+\end{align*}
+Given an element of $H(F)$, we have 3 entries to input, and ee have $\abs{F}$ choices for each entry, so the order is $\abs{F}^3$ (any possible combination of the three entries yields a valid element, no noninvertible matrices or anything to cut out)
+\item We're going to do some prep work here. Let's study the powers of elements from $H(F)$. We note that, by computation
+\begin{align*}
+X &= \begin{pmatrix}
+1 & a & b\\
+0 & 1 & c\\
+0 & 0 & 1
+\end{pmatrix}\\
+X^2 &= \begin{pmatrix}
+1 & 2a & 2b+ac\\
+0 & 1 & 2c\\
+0 & 0 & 1
+\end{pmatrix}\\
+X^3 &= \begin{pmatrix}
+1 & 3a & 3b+3ac\\
+0 & 1 & 3c\\
+0 & 0 & 1
+\end{pmatrix}\\
+X^4 &= \begin{pmatrix}
+1 & 4a & 4b+6ac\\
+0 & 1 & 4c\\
+0 & 0 & 1
+\end{pmatrix}\\
+X^5 &= \begin{pmatrix}
+1 & 5a & 5b+10ac\\
+0 & 1 & 5c\\
+0 & 0 & 1
+\end{pmatrix}\\
+\end{align*}
+etc. We notice a pattern, which is fairly straightforward, except for the coefficient of $ac$. It follows the sequence $0, 1, 3, 6, 10, \ldots$. I.e. start at $0$, add $1$, then add $2$, then add $3$, etc. We can describe the sequence recursively:
+\begin{align*}
+a_1 &= 0\\
+a_n &= a_{n-1} + n-1
+\end{align*}
+We would like to derive a closed form expression for $a_n$, and thus we expand:
+\begin{align*}
+a_n &= a_{n-1} + n-1\\
+&= a_{n-2} + (n-2) + (n-1)\\
+&= a_{n-3} + (n-3) + (n-2) + (n-1)\\
+&= \cdots\\
+&= a_{n-(n-1)} + (n-(n-1)) + \cdots + (n-3) + (n-2) + (n-1)\\
+&= a_{1} + 1 + \cdots + (n-3) + (n-2) + (n-1)\\
+&= 0 + 1 + \cdots + (n-3) + (n-2) + (n-1)\\
+&= 0 + 1 + 2 + 3 + \cdots + (n-3) + (n-2) + (n-1)\\
+\end{align*}
+This is just the standard summation of the arithmetic sequence with common difference $1$, and hence 
+\begin{equation}
+a_n = \frac{n(n-1)}{2}
+\end{equation}
+We now can derive a formula for $X^n$
+\begin{lemma}\label{heisenbergpower}
+Given $X = \abcberg \in H(F)$ and $n$ a nonnegative integer,
+\begin{equation}
+X^n =
+\begin{pmatrix}
+1 & na & nb+\frac{n(n-1)}{2}ac\\
+0 & 1 & nc\\
+0 & 0 & 1
+\end{pmatrix}
+\end{equation}
+\end{lemma}
+\begin{proof}
+Base case: If $n = 0$, then this just reduces to the identity.\\
+Now we suppose that 
+\begin{equation}
+X^{n-1} =
+\begin{pmatrix}
+1 & (n-1)a & (n-1)b+\frac{(n-1)(n-2)}{2}ac\\
+0 & 1 & (n-1)c\\
+0 & 0 & 1
+\end{pmatrix}
+\end{equation}
+Then
+\begin{align*}
+X^n &= X^{n-1}X\\
+&= \begin{pmatrix}
+1 & (n-1)a & (n-1)b+\frac{(n-1)(n-2)}{2}ac\\
+0 & 1 & (n-1)c\\
+0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & a & b\\
+0 & 1 & c\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= \begin{pmatrix}
+1 & (n-1)a + a & b+(n-1)ac+(n-1)b+\frac{(n-1)(n-2)}{2}ac\\
+0 & 1 & c+(n-1)c\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= \begin{pmatrix}
+1 & na & b+(n-1)b+(n-1)ac+\frac{(n-1)(n-2)}{2}ac\\
+0 & 1 & nc\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= \begin{pmatrix}
+1 & na & nb+(n-1)ac+\frac{(n-1)(n-2)}{2}ac\\
+0 & 1 & nc\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= \begin{pmatrix}
+1 & na & nb+((n-1)+\frac{(n-1)(n-2)}{2})ac\\
+0 & 1 & nc\\
+0 & 0 & 1
+\end{pmatrix}\\
+\end{align*}
+Clearly, if we show that $(n-1)+\frac{(n-1)(n-2)}{2} = \frac{n(n-1)}{2}$, we're done. But
+\begin{align*}
+(n-1)+\frac{(n-1)(n-2)}{2} 
+&= \frac{2(n-1)}{2}+\frac{(n-1)(n-2)}{2} \\
+&= \frac{2(n-1) + (n-1)(n-2)}{2} \\
+&= \frac{2n-2 + n^2-3n+2}{2} \\
+&= \frac{n^2+2n-3n+2-2}{2} \\
+&= \frac{n^2-n}{2} \\
+&= \frac{n(n-1)}{2} \\
+\end{align*}
+\end{proof}
+Now we actually find the order of each element of $H(\finfield_2)$. Note that from the previous part, $\abs{H(\finfield_2)} = \abs{\finfield_2}^3 = 2^3 = 8$, and we can exhaustively list the elements of $H(\finfield_2)$ by "turning the entries on/off":
+\begin{align*}
+I &= \begin{pmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}\\
+A &= \begin{pmatrix}
+1 & 1 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}\\
+B &= \begin{pmatrix}
+1 & 1 & 1\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}\\
+C &= \begin{pmatrix}
+1 & 1 & 0\\
+0 & 1 & 1\\
+0 & 0 & 1
+\end{pmatrix}\\
+D &= \begin{pmatrix}
+1 & 1 & 1\\
+0 & 1 & 1\\
+0 & 0 & 1
+\end{pmatrix}\\
+E &= \begin{pmatrix}
+1 & 0 & 1\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}\\
+F &= \begin{pmatrix}
+1 & 0 & 1\\
+0 & 1 & 1\\
+0 & 0 & 1
+\end{pmatrix}\\
+G &= \begin{pmatrix}
+1 & 0 & 0\\
+0 & 1 & 1\\
+0 & 0 & 1
+\end{pmatrix}\\
+\end{align*}
+Of course, $\abs{I} = 1$. Note that in for any $x \in \finfield_2$, $2x = 0$ (in fact, $nx$ for any even $n$). Now consider any element $X=\abcberg \in H(\finfield_2)$ where $ac=0$. Then following \cref{lemma:heisenbergpower},
+\begin{align*}
+X^2 &= \begin{pmatrix}
+1 & 2a & 2b+\frac{2(2-1)}{2}ac\\
+0 & 1 & 2c\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= \begin{pmatrix}
+1 & 0 & 0+\frac{2(1)}{2}ac\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= \begin{pmatrix}
+1 & 0 & ac\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= \begin{pmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}\\
+\end{align*}
+Hence $X^2 = I$ for any $X$ where $ac=0$. Hence, 
+$
+\abs{A}
+= \abs{B}
+= \abs{E}
+= \abs{F}
+= \abs{G}
+=2$
+
+The only two elements left to check are $C$ and $D$, and we can actually prove the order of these elements simultaneously, by letting $b$ be arbitrary. Let
+$X =
+\begin{pmatrix}
+1 & 1 & b\\
+0 & 1 & 1\\
+0 & 0 & 1
+\end{pmatrix}
+$. Clearly $X^1 \neq I$ and $X^2 \neq I$. Also, looking at \cref{lemma:heisenbergpower}, odd numbered exponents would make $na=n1=n$ and $nc=n$ nonzero, so we have to check the next even-numbered exponent, i.e.
+\begin{align*}
+X^4 &= \begin{pmatrix}
+1 & 4\cdot 1 & 4b+\frac{4(4-1)}{2}1\cdot 1\\
+0 & 1 & 4\cdot 1\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= \begin{pmatrix}
+1 & 0 & 0+\frac{4(3)}{2}\cdot 1\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= \begin{pmatrix}
+1 & 0 & 12\cdot 1\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}\\
+&= \begin{pmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}\\
+\end{align*}
+So $\abs{X} = 4$, and $X$ could be either $C$ or $D$, so $\abs{C}=\abs{D}=4$
+\item Given nonidentity $X$ in $H(\reals)$, we must have either $a\neq 0$, $b\neq 0$, or $c\neq 0$. Now, given $n \in \posints$ an integer, suppose $X^n$ is the identity matrix.  I.e. using \cref{lemma:heisenbergpower}, suppose
+\begin{equation}
+\begin{pmatrix}
+1 & na & nb+\frac{n(n-1)}{2}ac\\
+0 & 1 & nc\\
+0 & 0 & 1
+\end{pmatrix}
+= \begin{pmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}
+\end{equation}
+Which occurs iff the following system of equations holds:
+\begin{align*}
+na &= 0\\
+nb+\frac{n(n-1)}{2}ac &= 0\\
+nc &= 0
+\end{align*}
+We proceed by cases:
+\begin{itemize}
+\item Case: $a \neq 0$. Then since $n \neq 0$, the first equation cannot hold.
+\item Case: $c \neq 0$. Then since $n \neq 0$, the third equation cannot hold.
+\item Case: $b \neq 0$. Then consider the second equation. If it holds, then since $n$ and $b$ are both nonzero, we must have that
+$\frac{n(n-1)}{2}ac \neq 0$. And in $\reals$, this means that we must have $n \neq 0$, $n-1 \neq 0$, $a \neq 0$, $c \neq 0$, but the latter two inequalities are covered in the first two cases.\\
+\end{itemize}
+\end{enumerate}
+\end{document}
+
+
