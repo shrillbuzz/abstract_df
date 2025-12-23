@@ -19,8 +19,28 @@
 
 
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\R}{\mathbb{R}}
 \newcommand{\residue}{\mathbb{Z}/n\mathbb{Z}}
+\newcommand{\prob}[1]{\section*{#1}}
 
+
+\newcommand{\problemslocaltoc}{%
+  \etocsettocstyle{}{}%
+  \etocsetnexttocdepth{subsubsection}%
+%   \setcounter{secnumdepth}{2}%
+  \localtableofcontents%
+}
+
+
+\newcounter{problem}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{problem}}
+
+\newcommand{\problem}[1]{%
+  \setcounter{problem}{#1}\addtocounter{problem}{-1}%
+  \stepcounter{problem}%
+  \subsubsection{}%
+}
 
 
 \begin{document}
@@ -29,17 +49,17 @@
 \section{Introduction to Groups}
 \subsection{Basic Axioms and Examples}
 
-\etocsettocstyle{}{} % no title
-\etocsetnexttocdepth{subsubsection} % adjust depth if needed
-\setcounter{secnumdepth}{2} % don't number subsubsections
-\localtableofcontents
-
+% \etocsettocstyle{}{} % no title
+% \etocsetnexttocdepth{subsubsection} % adjust depth if needed
+% \setcounter{secnumdepth}{2} % don't number subsubsections
+% \localtableofcontents
+\problemslocaltoc
 
 % 3, 4, 5
 
 % 1, 3, 4, 5, 9, 15, 16, 17, 19, 20, 21, 23, 25, 26, 27, 29, 30, 31, 32, 33, 34, 35
 
-\subsubsection{3 \& 4}
+% \problem{3 \& 4}
 
 Notice that for any integers x, y the following properties holds for their residue classes mod n:
 \[\overline{x * y} = \bar x * \bar y \quad \quad \overline{x+y} = \bar x + \bar y\]
@@ -54,12 +74,12 @@ The associativity of multiplication and addition of residue classes in  \(\resid
 
 The argument is essentially the same for multiplication.
 
-\subsubsection{5}
+\problem{5}
 
  Let \(n > 1\). Now consider \(\bar 0\in \residue\). It's not possible for \(\bar 0\) to have a multiplicative inverse, because any value multiplied by \(\bar 0\) is \(\bar 0\).  Thus \(\residue\) for n greater than one are not groups.
  
 
-\subsubsection{7}
+\problem{7}
 Define for any real number x:
 \[\bar x = x - [x]\]
 
@@ -128,7 +148,7 @@ The associativity and commutativity of \(\star\) follow from this definition (co
 \end{itemize}
 
 
-\subsubsection{15}
+\problem{15}
 
 We can show 
 
@@ -140,80 +160,88 @@ Notice:
 
 
 
-\subsubsection{16}
+\problem{16}
 
 First direction: If the order of an element of a group is 2 then by definition, that element squared is 1. If the order is 1, then that element to any power including 2 is 1. 
 
 Second direction: Suppose x doesn't have order 1 or 2 (in other words x has order greater than 2). Thus the smallest positive integer n such that \(x^n =1\) is greater than 2. It can't be the case then that  \(x^2 = 1\).
 
-\subsubsection{17}
+\problem{17}
 
-\subsubsection{19}
+\problem{19}
 
-\subsubsection{20}
+\problem{20}
 
+\subsection{Matrix Groups}
 
+\problemslocaltoc
 
-% \section{P 2.1.6}
+\problem 1 
 
-% \subparagraph{ii} addition is not associative
-% $$((a,b) + (c,d)) + (e,f) = (b+d, a+c) + (e,f)$$
-% $$ (b+d, a+c) + (e,f)= (a+c+f,b+d+e)$$
-
-% $$(a,b) + ((c,d) + (e,f)) = (a,b) + (d+f,c+e) $$
-% $$(a,b) + (d+f,c+e) = (c+e+b,d+f+a)$$
-
-% \section{P 2.2.1} Determine which are subspaces of \(\mathbb{R}^3\)
-% \paragraph{a} All vectors of the form (a,b,c), where b = 2a+c are a subspace
-
-% \subparagraph{i} addition is closed
-
-% $$(a_1,2a_1+c_1,c_1)+(a_2,2a_2+c_2,c_2) = (a_1+a_2,2(a_2+a_1)+(c_1 +c_2) ,c_1+c_1)$$
-
-% \subparagraph{ii} • is closed
-
-% $$\alpha (a,b,c) = (\alpha a, 2(\alpha a)+\alpha c,\alpha c)$$
-
-% \subparagraph{iii} has zero vector of \(\mathbb{R}^3\)
-
-% $$(0,0,0) \in(a,2a+c, c)$$
-
-% \paragraph{b} All vectors of the form (a,b,2) are not a subspace
-% \subparagraph{i} Not closed under • 
-
-% $$2*(a,b,2) = (2a,2b,4) \not\in (a,b,2) $$
+Prove that \( |GL_2(\mathbb{F}) |= 6 \)
 
 
-% %•••••••••%
-% \section{P 2.2.5} Which of the following functions are subspaces of V? Prove your assertion. 
-% %•••••••••%
-% \paragraph{(a)} $f \in V$ for which f(1) = 0, is a subspace
+\problem 2
 
-% \subparagraph{i} addition is closed
-% $$(g + f)(x) = g(x) + f(x) $$
-% $$g(1) + f(1) = 0$$
-% $$(g + f)(x) \in V$$
+Write out all the elements of \(GL_2 (F_2) \) and compute the order of each element.
 
+\problem 3 Show that \( GL_2 ( \F  ) \) is non-abelian.
 
-% \subparagraph{ii} • is closed
+\problem 4
 
-% $$\alpha f(1) = 0$$
-% $$\alpha f(x) \in V$$
+Show that if n is not prime then \(\residue\) is not a field. 
+
+\problem 5 
+
+Show that \(GL_n(F)\) is a finite group if and only if F has a finite number of elements
 
 
-% \subparagraph{iii} has zero vector of V
-% $$f(x) = 0 $$
+\problem 6
 
-% $$g(x) + f(x) = g(x)$$
+If \(|F| = q\) is finite prove that \(GL_n(F) < q^{n^2}\).
+
+\problem 7 
+
+Let p be a prime.
+Prove that the order of \(GL_2 (\F_p) \) is \(p^4 -p^3 -p^2 + p\). 
+(do not just quote the order formula in this section). 
+[Subtract the number of 2 x 2 matrices over \(\F_p\). 
+You may use tha fact that a 2 x 2 matricx is not invertible if and only if one row is a muliple of the other. ]
+
+\problem 8
+
+Show that \(GL_n(F)\) is non-abelian for any \(n \ge 2\) and any F. 
 
 
-% \paragraph{(b)}$f \in V$ for which f(1) = 1,  is not a subspace
+\problem 9 
 
-% \subparagraph{i} addition is not closed
+Prove that the binary operation of matrix muliplication of 2 x 2 matricies iwth real entities is associative
 
-% $$(g + f)(x) = f(x) +g(x)  $$
-% $$ (g + f)(1) = g(1) + f(1) = 2$$
-% $$(g + f)(x) \mbox{ is not in the subspace}$$
+
+\problem {10}
+Let \(H(F) = \{\begin{bmatrix}
+1 & a & b \\
+0 & 1 & c \\
+0 & 0 & 1
+\end{bmatrix} | a, b, c, d \in F\}\) -- called the Heisenberg group over F. Let 
+\(X = \begin{bmatrix}
+    1 & a & b\\
+    0 & 1 & c\\
+    0 & 0 & 1
+\end{bmatrix}\) and \(Y = \begin{bmatrix}
+    1 & d & e\\
+    0 & 1 & f \\
+    0 & 0 & 1
+\end{bmatrix}\) be elements of \(H(F)\).
+
+\begin{enumerate}
+    \item Compute the matrix product \(XY\) and deduce that \(H(F)\) is closed under matrix multiplication. 
+    Exhibit explicit maricies such that \(XY  \not = Y X\) (so that \(H(F)\) is always non-abelian).
+    \item Find and explicit formula for the matrix inverse \(X^{-1}\) and deduce that \(H(F)\) is closed under inverse.
+    \item Prove the associative law for \(H(F)\) and deduce that \(H(F)\) is a group of order \(|F|^3\). 
+    \item Find the order of each element of the finite group \(H(\Z / 2 \Z)\).
+    \item Prove that every nonidentity elements of the group \(H (\R )\) has infinite order.
+\end{enumerate}
 
 
 
