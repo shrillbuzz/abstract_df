@@ -1,4 +1,5 @@
 \documentclass{article}
+\title{Part I - Group Theory}
 
 % Language setting
 % Replace `english' with e.g. `spanish' to change the document language
@@ -13,6 +14,9 @@
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
+\setcounter{tocdepth}{2} 
+\usepackage{etoc}
+
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\residue}{\mathbb{Z}/n\mathbb{Z}}
@@ -20,13 +24,22 @@
 
 
 \begin{document}
+\tableofcontents
+
+\section{Introduction to Groups}
+\subsection{Basic Axioms and Examples}
+
+\etocsettocstyle{}{} % no title
+\etocsetnexttocdepth{subsubsection} % adjust depth if needed
+\setcounter{secnumdepth}{2} % don't number subsubsections
+\localtableofcontents
 
 
 % 3, 4, 5
 
 % 1, 3, 4, 5, 9, 15, 16, 17, 19, 20, 21, 23, 25, 26, 27, 29, 30, 31, 32, 33, 34, 35
 
-\section*{3 \& 4}
+\subsubsection{3 \& 4}
 
 Notice that for any integers x, y the following properties holds for their residue classes mod n:
 \[\overline{x * y} = \bar x * \bar y \quad \quad \overline{x+y} = \bar x + \bar y\]
@@ -41,12 +54,12 @@ The associativity of multiplication and addition of residue classes in  \(\resid
 
 The argument is essentially the same for multiplication.
 
-\section*{5}
+\subsubsection{5}
 
  Let \(n > 1\). Now consider \(\bar 0\in \residue\). It's not possible for \(\bar 0\) to have a multiplicative inverse, because any value multiplied by \(\bar 0\) is \(\bar 0\).  Thus \(\residue\) for n greater than one are not groups.
  
 
-\section*{7}
+\subsubsection{7}
 Define for any real number x:
 \[\bar x = x - [x]\]
 
@@ -115,23 +128,29 @@ The associativity and commutativity of \(\star\) follow from this definition (co
 \end{itemize}
 
 
-\section*{15}
+\subsubsection{15}
 
-Very straight forwar/. I'll do this once I can type ion my laptop and not have to deal with the evilness of qwerty. 
+We can show 
+
+Notice:
+\begin{align*}
+    \left ( a_1 a_2 \cdots a_n \right ) \cdot \left ( a_n^{-1} a_{n-1}^{-1}\cdots a_1^{-1} \right ) &=\left ( a_1 a_2 \cdots a_{n-1} \right ) a_n \cdot  a_n^{-1} \left ( a_{n-1}^{-1}\cdots a_1^{-1} \right )\\
+    &= \left ( a_1 a_2 \cdots a_{n-1} \right )  \cdot   \left ( a_{n-1}^{-1}\cdots a_1^{-1} \right ) \\
+\end{align*}
 
 
 
-\section*{16}
+\subsubsection{16}
 
 First direction: If the order of an element of a group is 2 then by definition, that element squared is 1. If the order is 1, then that element to any power including 2 is 1. 
 
 Second direction: Suppose x doesn't have order 1 or 2 (in other words x has order greater than 2). Thus the smallest positive integer n such that \(x^n =1\) is greater than 2. It can't be the case then that  \(x^2 = 1\).
 
-\section*{17}
+\subsubsection{17}
 
-\section*{19}
+\subsubsection{19}
 
-\section*{20}
+\subsubsection{20}
 
 
 
