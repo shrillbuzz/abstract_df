@@ -16,7 +16,7 @@
 \usepackage[shortlabels]{enumitem}
 \usepackage{amsthm}
 \usepackage{bm}
-\usepackage{color}   %May be necessary if you want to color links
+\usepackage{color}    %May be necessary if you want to color links
 \usepackage[bookmarks,hypertexnames=false,debug,linktocpage=true,hidelinks]{hyperref}
 \usepackage{hyperref}
 \usepackage{cleveref}
@@ -24,6 +24,7 @@
 
 \newcommand{\oper}{\star}
 \newcommand{\reals}{\mathbb{R}}
+\newcommand{\complex}{\mathbb{C}}
 \newcommand{\ints}{\mathbb{Z}}
 \newcommand{\posints}{\mathbb{Z}^{+}}
 \newcommand{\intspos}{\posints}
@@ -35,6 +36,7 @@
 \newcommand{\mult}{\star}
 \newcommand{\iso}{\cong}
 \newcommand{\set}[1]{ \{ #1 \} }
+\newcommand{\id}{\textbf{1}}
 \newcommand{\infy}{\infty}
 \newcommand{\ntimes}[2]{\underbrace{#1}_{#2 \text{ times}}}
 \newcommand{\ntimesmult}[2]{\ntimes{#1\cdots #1}{#2}}
@@ -44,6 +46,25 @@
 \newcommand{\finfield}{\finitefield}
 \newcommand{\nozeroes}[1]{#1^{\times}}
 \newcommand{\genlin}{GL}
+\newcommand{\sect}[1]{\subsection{}\label{sec#1}}
+\newcommand{\chap}[1]{\section{#1}}
+\newcommand{\prob}[1]{\subsubsection{}\label{ex#1}}
+\newcommand{\skipsubsec}{\stepcounter{subsection}}
+\newcommand{\skipsec}[1]{\skipsubsec\label{sec#1}}
+\newcommand{\skipsect}[1]{\skipsec{#1}}
+\newcommand{\skipsubsubsec}{\stepcounter{subsubsection}}
+\newcommand{\skipprob}[1]{\skipsubsubsec\label{ex#1}}
+\newcommand{\probstmt}[1]{\emph{#1}\\\\}
+\newcommand{\bsubprob}{\begin{enumerate}[(a)]}
+\newcommand{\subprob}[2]{\item\label{ex#1#2}}
+\newcommand{\esubprob}{\end{enumerate}}
+\newcommand{\divides}{|}
+\newcommand{\phiinv}{\inv{\phi}}
+\newcommand{\comp}{\circ}
+\newcommand{\exref}[1]{\ref{ex#1}}
+\newcommand{\suchthat}{|}
+\DeclareMathOperator{\Aut}{Aut}
+
 
 \newtheorem{lemma}{Lemma}
 
@@ -51,8 +72,8 @@
 \maketitle
 \tableofcontents
 \section{Introduction to Groups}
-\subsection{Basic Axioms and Examples}
-\subsubsection{}\label{ex1p1}
+\sect{Basic Axioms and Examples}
+\prob{1.1}
 \begin{enumerate}[(a)]
 	\item No. $(5-4)-1 = 1-1 = 0$ but $5-(4-1) = 5-3 = 2$
 	\item Yes.
@@ -79,8 +100,8 @@
 	\item
 		No. $(1\oper 2)\oper 3 = \frac{1}{2}\oper 3 = \frac{\frac{1}{2}}{3} = \frac{1}{6}$. But $1\oper (2\oper 3) = 1\oper \frac{2}{3} = \frac{1}{\frac{2}{3}} = \frac{3}{2}$
 \end{enumerate}
-\stepcounter{subsubsection}\label{ex1p2}
-\subsubsection{}\label{ex1p3}
+\skipprob{1.2}
+\prob{1.3}
 	\begin{align*}
 		(\eqcl a + \eqcl b) + \eqcl{c} &= (\eqcl{a+b}) + \eqcl{c}\\
 		&= \eqcl{(a+b)+c}\\
@@ -98,10 +119,10 @@
 	\end{align*}
 \subsubsection{}\label{ex1p5}
 $\eqcl 0$ has no multiplicative inverse 
-\stepcounter{subsubsection}\label{ex1p6}
-\stepcounter{subsubsection}\label{ex1p7}
-\stepcounter{subsubsection}\label{ex1p8}
-\subsubsection{}\label{ex1p9}
+\skipprob{1.6}
+\skipprob{1.7}
+\skipprob{1.8}
+\prob{1.9}
 	\begin{enumerate}[(a)]
 		\item
 		\begin{itemize}
@@ -444,7 +465,7 @@ E &= \begin{pmatrix}
 Any other possible element's determinant is 0
 \subsubsection{}\label{ex4p2}
 We already listed the elements above. Simple computation gives us $\abs{I}=1$, $\abs{A}=\abs{C}=\abs{D} = 2$, $\abs{B}=\abs{E}= 3$
-\subsubsection{}\label{ex4p3}
+\prob{3}
 We'll take the following lemma for granted moving forward:
 \begin{lemma}
 In a field $F$, $0 \neq 1$
@@ -1027,6 +1048,319 @@ We proceed by cases:
 $\frac{n(n-1)}{2}ac \neq 0$. And in $\reals$, this means that we must have $n \neq 0$, $n-1 \neq 0$, $a \neq 0$, $c \neq 0$, but the latter two inequalities are covered in the first two cases.\\
 \end{itemize}
 \end{enumerate}
+
+\skipsec{5} %SECTION 1.5
+
+\sect{6} %SECTION 1.6
+\probstmt{Let $G$ and $H$ be groups}
+We start with some lemmas:
+
+\begin{lemma}\label{lemma:6.1}
+If $\phi:G\to H$ a homomorphism, then $\phi(1)=1$
+\end{lemma}
+\begin{proof}
+Let $x\in G$. Then
+\begin{align*}
+\phi(x)\phi(1) &= \phi(x\cdot 1) & \mbox{$\phi$ a homomorphism}\\
+&= \phi(x)\\
+\implies \phi(1) &= 1 & \mbox{by left cancelation}
+\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lemma:6.2}
+The composition of two homomorphisms is a homomorphism
+\end{lemma}
+\begin{proof}
+Let $\phi:A\to B, \psi:B\to C$ be homomorphisms. Then given arbitrary $a,b\in A$,
+\begin{align*}
+\psi\comp\phi(ab) &= \psi(\phi(ab))\\
+&=\psi(\phi(a)\phi(b)) & \mbox{$\phi$ a homomorphism}\\
+&=\psi(\phi(a))\psi(\phi(b)) & \mbox{$\psi$ a homomorphism}\\
+&=\psi\comp\phi(a)\psi\comp\phi(b)
+\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lemma:6.3}
+If $\phi:G\to H$ is an isomorphism, its inverse map $\psi:H\to G$ is a homomorphism (and therefore is an isomorphism as well. We can therefore denote $\psi=\phiinv$.
+\end{lemma}
+\begin{proof}
+From basic set theory, any bijection $\phi$ has a unique inverse map $\psi$, so that $\psi\comp\phi=\id$. We need to show that $\psi$ is a homomorphism. Let $h,h'\in H$. Then there are $g,g' \in G$ such that $\phi(g)=h$ and $\phi(g')=h'$. Then 
+\begin{align*}
+\psi(hh')&=\psi(\phi(g)\phi(g'))\\
+&=\psi(\phi(gg')) & \mbox{$\phi$ is a homomorphism}\\
+&=\psi\comp\phi(gg')\\
+&=gg' & \mbox{$\psi$ is the inverse map}\\
+&=\psi(h)\psi(h')
+\end{align*}
+\end{proof}
+
+\prob{6.1}
+\probstmt{Let $\phi:G\to H$ be a homomorphism.}
+	\bsubprob
+	\subprob{6.1}{a}
+	\probstmt{Prove that $\phi(x^n) = \phi(x)^n$ for all $n \in \posints$}
+	\begin{itemize}
+	\item Base Case: $n=1$. Then $\phi(x^n)=\phi(x^1)=\phi(x)=\phi(x)^1=\phi(x)^n$.
+	\item Induction: We assume that $\phi(x^{n-1}) = \phi(x)^{n-1}$. Then
+	\begin{align*}
+	\phi(x^n) &= \phi(x^{n-1}x)\\
+	&=\phi(x^{n-1})\phi(x) & \mbox{$\phi$ is a homomorphism}\\
+	&=\phi(x)^{n-1}\phi(x) & \mbox{Inductive hypothesis}\\
+	&=\phi(x)^n 
+	\end{align*}
+	\end{itemize}
+	\subprob{6.1}{b}
+	\probstmt{Do part \ref{ex6.1a} for $n=-1$ and deduce that $\phi(x^n)=\phi(x)^n$ for all $n\in\ints$.}
+	\begin{itemize}
+	\item We first show this for $n=-1$:
+	\begin{align*}
+	\phi(x)\phi(\inv{x}) &= \phi(x\inv{x}) & \mbox{$\phi$ a homomorphism}\\
+	&= \phi(1)\\
+	&= 1 & \mbox{By \cref{lemma:6.1}} 
+	\end{align*}
+	\item Now suppose $n \in Z$ is a negative integer. Let $m \in -n$, so that $m \in \posints$. Then
+\begin{align*}
+\phi(x^n) &= \phi(x^{-m})\\
+&= \phi(\inv{(x^m)})\\
+&= \inv{\phi(x^m)} & \mbox{The $n=-1$ case}\\
+&= \inv{(\phi(x)^m)} & \mbox{By \ref{ex6.1a}}\\
+&= \phi(x)^{-m}\\
+&= \phi(x)^n
+\end{align*}
+	\item The $n=0$ case is obvious, via \cref{lemma:6.1}: $\phi(x^0)=\phi(1)=1=\phi(x)^0$
+	\end{itemize}
+	\esubprob
+\prob{6.2}
+\probstmt{If $\phi:G\to H$ is an isomorphism, prove that $\abs{\phi(x)}=\abs{x}$ for all $x\in G$. Deduce that any two isomorphic groups have the same number of elements of order $n$ for each $n\in\posints$. Is the result true if $\phi$ is only assumed to be a homomorphism?}
+	Let $x\in G$ and denote $\abs{\phi(x)}=n$, $\abs{x}=k$. Then
+	\begin{align*}
+	x^k &= 1\\
+	\implies \phi(x^k) &= \phi(1)\\
+	\implies \phi(x)^k &= 1\\
+	\implies n \leq k
+	\end{align*}
+	But
+	\begin{align*}
+	\phi(x)^n &= 1\\
+	\implies \phi(x^n) &= 1\\
+	\implies x^n &= \phiinv(1) & \mbox{$\phi$ is an isomorphism}\\
+	&= 1
+	\end{align*}
+	so $k \leq n$. Hence, $k=n$.\\
+	The fact that two isomorphic groups have the same elements of order for each positive integer follows trivially. If $\phi$ is only a homomorphism, the result is not necessarily true: Consider the trivial homomorphism $G\to\set{1}$ where $G$ has elements of order $>1$
+\prob{6.3}
+\probstmt{If $G\to H$ is an isomorphism, prove that $G$ is abelian if and only if $H$ is abelian. If $\phi:G\to H$ is a homorphism, what additional conditions on $\phi$ (if any) are sufficient to ensure that if $G$ is abelian, then so is $H$?}
+\begin{itemize}
+\item $\implies$: Let $G$ be abelian. Then given $h,h'\in H$ there are $g,g'$ s.t. $\phi(g)=h,\phi(g')=h'$ (since $\phi$ is an isomoprhism). Then 
+\begin{align*}
+hh' &= \phi(g)\phi(g')\\
+&= \phi(gg')\\
+&= \phi(g'g) & \mbox{$G$ abelian}\\
+&= \phi(g')\phi(g)\\
+&= h'h
+\end{align*}
+Since $h,h'\in H$ were arbitrary, $H$ is abelian.
+\item $\impliedby$: Apply the same proof with $\phiinv$ instead of $\phi$
+\item For an arbitrary homomorphism $\phi$, it suffices for $\phi$ to be surjective (The proof above works, because we can select $g\in\phiinv(h),g'\in\phiinv(h')$.
+\end{itemize}
+\prob{6.4}
+\probstmt{Prove that the multiplicative groups $\reals-\set{0}$ and $\complex-\set{0}$ are not isomorphic.}
+Note that $\abs{e^{\frac{2\pi}{7}i}}=7$, but $\reals-\set{0}$ only has elements of order $1,2,\infty$. Apply \exref{6.2}
+\prob{6.5}
+\probstmt{Prove that the additive groups $\reals$ and $\rats$ are not isomorphic.}
+$\reals$ is uncountable and $\rats$ is countable. By basic theory, not even a bijection exists between them.
+\prob{6.6}
+\probstmt{Prove that the additive groups $\ints$ and $\rats$ are not isomorphic.}
+Suppose $\phi: \ints\to\rats$ was an isomorphism. Then given $n\in\ints$, apply \exref{6.1}: $\phi(n)=\phi(1n)=n\phi(1)=n\cdot 1=n$. So $\phi$ only maps onto the integers and therefore is not surjective onto $\rats$.
+\skipprob{6.7}
+\skipprob{6.8}
+\skipprob{6.9}
+\skipprob{6.10}
+\prob{6.11}
+\probstmt{Let $A$ and $B$ be groups. Prove that $A\times B \iso B \times A$.}
+The map $(a,b) \mapsto (b,a)$ is clearly an isomorphism. 
+\prob{6.12}
+\probstmt{Let $A,B$, and $C$ be groups and let $G=A\times B$ and $H=B\times C$. Prove that $G\times C \iso A\times H$.}
+Clearly the map $((a,b),c) \mapsto (a,(b,c))$ is an isomorphism.
+\prob{6.13}
+\probstmt{Let $G$ and $H$ be groups and let $\phi: G\to H$ be a homomorphism. Prove that the image of $\phi$, $\phi(G)$, is a subgroup of $H$ (cf. Exercise of Section 1). Prove that if $\phi$ is injective then $G\iso\phi(G)$.}
+\begin{itemize}
+\item Closed under the operation: If $h,h' \in \phi(G)$, then $\exists g,g'\in G$ such that $\phi(g)=h, \phi(g')=h'$. And $hh'=\phi(g)\phi(g')=\phi(gg')\in\phi(G)$.
+\item Closed under inverses: If $h\in\phi(G)$, then $\exists g\in G$ s.t. $\phi(g)=h$. Let $h'=\phi(\inv{g})$, and note that $h'\in\phi(G)$. And $hh'=\phi(g)\phi(\inv{g})=\phi(g\inv{g})=\phi(1)=1$. So $h'=\inv{h}$ and $\inv{h}\in\phi(G)$.
+\item $\phi$ is trivially surjective onto $\phi(G)$. If it's also injective, that makes it bijective and therefore an isomorphism (onto $\phi(G)$).
+\end{itemize}
+\prob{6.14}
+\probstmt{Let $G$ and $H$ be groups and let $\phi:G\to H$ be a homomorphism. Define the \emph{kernel} of $\phi$ to be $\set{g\in G | \phi(g) = 1_H }$ (so the kernel is the set of elements in $G$ which map to the identity of $H$, i.e., is the fiber over the identity of $G$, i.e., is the fiber over the identity of $H$). Prove that the kernel of $\phi$ is a subgroup (cf. Exercise 26 of Section 1) of $G$. Prove that $\phi$ is injective if and only if the kernel of $\phi$ is the identity subgroup of $G$.}
+\begin{enumerate}[(1)]
+\item We first show that $\ker\phi$ is a subgroup.
+\begin{itemize}
+\item Closure under the operation: Let $g,g'\in \phiinv(1)$. Then
+\begin{align*}
+\phi(gg') &= \phi(g)\phi(g')\\
+&= 1\cdot 1\\
+&= 1\\
+\implies gg' &\in \phiinv(1)
+\end{align*}
+\item Closure under inverse. Given $g\in\phiinv(1)$. we note that
+\begin{align*}
+\phi(\inv{g}) &= \inv{\phi(g)}\\
+&= \inv{1}\\
+&= 1\\
+\implies \inv{g} &\in \phiinv(1)
+\end{align*}
+\end{itemize}
+\item Now we show that $\phi$ is injective $\iff$ $\phiinv(1) = \set{1}$. Let's prove a lemma
+
+\begin{lemma}\label{lemma:6.4}
+$\phi:G\to H$ is injective if and only if $\forall g\in G: \phi(g) = 1 \implies g=1$
+\end{lemma}
+\begin{proof}
+The definition of an injective map is $\phi(g)=\phi(h)\implies g=h$.
+\begin{itemize}
+\item $\implies$: Suppose $\phi$ is injective. Note that since $\phi$ is a homomorphism, $\phi(1) = 1$ by \cref{lemma:6.1}. But $\phi(g)=1$. So we must have have $g=1$ because $\phi$ is injective.
+\item $\impliedby$: Let $g,h \in G$. Then
+\begin{align*}
+\phi(g) &= \phi(h)\\
+\implies 1 &= \phi(h)\inv{\phi(g)}\\
+&= \phi(h)\phi(\inv{g})\\
+&= \phi(h\inv{g})\\
+\implies 1&= h\inv{g}\\
+\implies g &= h
+\end{align*}
+Since $g,h$ were arbitrary, $\phi$ is injective
+\end{itemize}
+\end{proof}
+Now we proceed with the exercise
+\begin{itemize}
+\item $\implies$: Suppose $\phi$ injective. Then given $g\in G$,
+\begin{align*}
+\phi(g) &= 1\\
+&= \phi(1) & \mbox{by \cref{lemma:6.1}}\\
+\implies g &= 1 & \mbox{by \cref{lemma:6.4}}
+\end{align*}
+Since $g$ was arbitrary, we have $\phiinv(1) = \set{1}$.
+\item $\impliedby$: Suppose $\phiinv(1)=\set{1}$. Then given $g\in G$,
+\begin{align*}
+\phi(g) &= 1\\
+\implies g &\in \phiinv(1)\\
+\implies g &= 1 & \mbox{by the condition}
+\end{align*}
+Hence \cref{lemma:6.4} gives us injectivity.
+\end{itemize}
+\end{enumerate}
+\prob{6.15}
+\probstmt{Define a map $\pi: \reals^2 \to \reals$ by $\phi((x,y))=x$. Prove that $\pi$ is a homomorphism and find the kernel of $\pi$ (cf. Exercises \ref{ex6.14}).}
+\begin{itemize}
+\item Let $(x,y),(a,b) \in \reals^2$. Then $\pi((x,y)(a,b)) = \pi(xa,yb) = xa = \pi(x,a)\pi(y,b)$. Thus, $\pi$ is a homomorphism.
+\item If we have $\pi(x,y) = 1$, then we must have $x \in 1$. Hence $\ker\pi=\set{(1,y)|y\in\reals}$.
+\end{itemize}
+\prob{6.16}
+\probstmt{Let $A$ and $B$ be groups and let $G$ be their direct product, $A\times B$. Prove that the maps $\pi_1: G\to A$ and $\pi_2: G\to B$ defined by $\pi_1((a,b))=a$ and $\pi_2((a,b))=b$ are homomorphisms and find their kernels.}
+The demonstration that they are homomorphisms is analagous to the previous exercise. The kernels are also analagous
+\prob{6.17}
+\probstmt{Let $G$ be any group. Prove that the map from $G$ to itself defined by $g \mapsto \inv{g}$ is a homomorphism if and only if $G$ is abelian.}
+Denote the map as $\phi$
+\begin{itemize}
+\item $\implies$: Suppose $\phi$ a homomorphism. Then
+\begin{align*}
+gh &= \phi(\inv{g})\phi(\inv{h})\\
+&= \phi(\inv{g}\inv{h})\\
+&= \phi(\inv{(hg)})\\
+&= hg & \mbox{Definition of $\phi$}
+\end{align*}
+Hence $G$ is abelian
+\item $\impliedby$: Suppose $G$ is abelian. Then 
+\begin{align*}
+\phi(gh)&=\inv{(gh)}\\
+&=\inv{h}\inv{g}\\
+&=\inv{g}\inv{h} & \mbox{$G$ abelian}\\
+&=\phi(g)\phi(h)
+\end{align*}
+Hence, $\phi$ is a homomorphism.
+\end{itemize}
+\prob{6.18}
+\probstmt{Let $G$ be any group. Prove that the map from $G$ to itself defined by $g\mapsto g^2$ is a homomorphism if and only if $G$ is abelian.}
+Denote the map as $\phi$
+\begin{itemize}
+\item $\implies$: Suppose $\phi$ is a homomorphism. Let $g,h \in G$. Then
+\begin{align*}
+gh &= 1gh1\\
+&= \inv{g}gghh\inv{h}\\
+&= \inv{g}g^2h^2\inv{h}\\
+&= \inv{g}\phi(g)\phi(h)\inv{h}\\
+&= \inv{g}\phi(gh)\inv{h} & \mbox{$\phi$ homomorphism}\\
+&= \inv{g}(gh)^2\inv{h}\\
+&= \inv{g}ghgh\inv{h}\\
+&= 1hg1\\
+&= hg
+\end{align*}
+Hence, $G$ is abelian.
+\item $\impliedby$: Suppose $G$ is abelian. Then given $g,h\in G$,
+\begin{align*}
+\phi(gh) &= (gh)^2\\
+&= ghgh\\
+&= gghh & \mbox{$G$ abelian}\\
+&= g^2h^2\\
+&= \phi(g)\phi(h)
+\end{align*}
+So $\phi$ is a homomorphism.
+\end{itemize}
+\prob{6.19}
+\probstmt{Let $G=\set{z\in\complex | z^n = 1 \mbox{ for some } n\in\posints}$. Prove that for any fixed integer $k>1$ the map from $G$ to itself defined by $z \mapsto z^k$ is a surjective homomorphism but is not an isomorphism}
+Fix $k>1$ an integer and denote the homomorphism by $\phi$. Let $z\in G$. Then $\exists n \in \posints$ such that $z^n=1$. We write $z=re^{xi}$, and assume \wlg that $r \geq 0$. Then
+\begin{align*}
+z^n &= 1\\
+\implies (re^{xi})^n &= 1\\
+\implies r^ne^{xni} &= 1e^{0i}
+\end{align*}
+So we must have $r=1$ and, for some $m\in\ints$, we have $xn=2\pi m$. Dividing by $n$ on both sides yields
+\begin{equation}
+x = \frac{2\pi m}{n}
+\end{equation}
+We want $l$ such that
+\begin{align*}
+\phi(l) &= z\\
+\implies (re^{yi})^k &= e^{\frac{2\pi m}{n}i}\\
+\implies r^ke^{yki} &= 1e^{\frac{2\pi m}{n}i}\\
+\end{align*}
+So we must have $r=1$ and also 
+\begin{align*}
+yk &= \frac{2\pi m}{n}\\
+\implies y&= \frac{2\pi m}{nk}
+\end{align*}
+Hence, $l=e^{\frac{2\pi m}{nk}} \mapsto z$ under $\phi$ (Note that $l^{nk}=1$ as well, so $l\in G$). Since $z\in G$ was arbitrary, $\phi$ is surjective.\\
+Also note that $e^{\frac{2\pi}{k}i}, e^{\frac{4\pi}{k}i} \in G$ are not equal, but they both map to $1$ under $\phi$.
+\prob{6.20}
+\probstmt{Let $G$ be a group and let $\Aut(G)$ be the set of all isomorphisms from $G$ onto $G$. Prove that $\Aut(G)$ is a group under function composition (called the \emph{automorphism group} of $G$ and the elements of $\Aut(G)$ are called \emph{automorphisms} of $G$}
+\begin{itemize}
+\item $\Aut G$ has an identity since the identity map is an isomorphism.
+\item If $\phi$ is an isomorphism, it has an inverse isomorphism by \cref{lemma:6.3}.
+\item $\Aut G$ is closed under composition by \cref{lemma:6.2}
+\item Associativity: Let $\phi,\psi,\delta\in\Aut G$, and let $g\in G$. Then
+\begin{align*}
+\phi\comp(\psi\comp\delta)(g) &= \phi(\psi\comp\delta(g))\\
+&= \phi(\psi(\delta(g)))\\
+&= \phi\comp\psi(\delta(g))\\
+&= (\phi\comp\psi)\comp\delta(g)
+\end{align*}
+Since $g\in G$ was arbitrary, we have $\phi\comp(\psi\comp\delta)=(\phi\comp\psi)\comp\delta$
+\end{itemize}
+\prob{6.21}
+\probstmt{Prove that for each fixed nonzero $k\in\rats$ the map from $\rats$ to itself defined by $q\mapsto kq$ is an automorphism of $\rats$ (cf. Exercise \ref{ex6.20}).}
+Fix nonzero $k\in\rats$. Denote the homomorphism by $\phi$. Let $q,p\in Q$. Then $\phi(q+p) = k(q+p) =kq+kp=\phi(q)+\phi(p)$, so $\phi$ is a homomorphism. Note that we must have $k\neq 0$ and $1/k\in \rats$, and the inverse map $q\mapsto \frac{1}{k}q$ makes $\phi$ a bijection, and therefore an automorphism.
+\prob{6.22}
+\probstmt{Let $A$ be an abelian group and fix some $k\in\ints$. Prove that the map $a \mapsto a^k$ is a homomorphism from $A$ to itself. If $k=-1$ prove that this homomorphism is an isomorphism (i.e., is an automorphism of $A$).}
+\begin{itemize}
+\item Denote the homomorphism $\phi$. Then
+\begin{align*}
+\phi(ab) &= (ab)^k\\
+&= a^kb^k & \mbox{$A$ abelian}\\
+&= \phi(a)\phi(b)
+\end{align*}
+so $\phi$ is a homomorphism
+\item Suppose $k=-1$. Then clearly $\phi$ is an inverse homomorphism for itself.
+\end{itemize}
 \end{document}
+
 
 
