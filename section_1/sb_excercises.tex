@@ -459,6 +459,46 @@ we've assumed it's closed so this applies
 
 \end{itemize}
 
+\problem{22}
+
+Let x, y, and g be elements of a group. Prove that \(|g^{-1}xg| = |x|\) and \(|xy| = |yx|\).
+\\~\\
+
+First we show that \((g^{-1}xg)^n = g^{-1} x^n g\). We prove this by induction on n.
+\begin{itemize}
+    \item n=0
+    \[(g^{-1}xg)^n=(g^{-1}xg)^0 = 1 = g^{-1} 1g = g^{-1} x^0 g = g^{-1} x^n g\]
+
+    \item Assume \((g^{-1}xg)^n = g^{-1} x^n g\). We want to show \((g^{-1}xg)^{n+1} = g^{-1} x^{n+1} g\).
+    \begin{align*}
+        (g^{-1}xg)^n &= g^{-1} x^n g \\
+        (g^{-1}xg)^n(g^{-1}xg) &= g^{-1} x^n g (g^{-1}xg)\\
+        % (g^{-1}xg)^{n+1} &= g^{-1} x^nxg\\
+        (g^{-1}xg)^{n+1} &= g^{-1} x^{n+1}g\\
+    \end{align*}
+\end{itemize}
+Now we show \(|g^{-1}xg| = |x|\). Let n be an arbirtary integer.
+\begin{itemize}
+    \item \((g^{-1}xg)^n = 1 \implies x^n = 1\) 
+   \begin{align*}
+    (g^{-1}xg)^n &=  g^{-1} x^n g \\
+    1 &= g^{-1} x^n g \\
+    g 1 g^{-1} &= g g^{-1} x^n g g^{-1}\\
+    1 &=  x^n
+   \end{align*}
+   
+   \item \((g^{-1}xg)^n = 1 \impliedby x^n = 1\) 
+  
+   \[(g^{-1}xg)^n  = g^{-1} x^n g  = g^{-1} 1 g  = 1 \]
+
+\end{itemize}
+Now we'll used what we just proved to show \(|xy| = |yx|\). 
+\begin{align*}
+    |xy| &= |x^{-1}xyx| \\
+    &= |yx|
+\end{align*}
+
+
 \subsection{Matrix Groups}
 
 \problemslocaltoc
