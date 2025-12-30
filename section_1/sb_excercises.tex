@@ -9,6 +9,7 @@
 \usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
 % Useful packages
+\usepackage[most]{tcolorbox}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{graphicx}
@@ -21,6 +22,7 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\residue}{\mathbb{Z}/n\mathbb{Z}}
 \newcommand{\prob}[1]{\section*{#1}}
 
@@ -42,6 +44,13 @@
   \subsubsection{}%
 }
 
+% for asides
+\newtcolorbox{aside}{
+  colback=gray!5,
+  colframe=black!60,
+  title=Aside,
+  fonttitle=\bfseries
+}
 
 \begin{document}
 \tableofcontents
@@ -59,34 +68,31 @@
 
 % 1, 3, 4, 5, 9, 15, 16, 17, 19, 20, 21, 23, 25, 26, 27, 29, 30, 31, 32, 33, 34, 35
 
-% \problem{3 \& 4}
+\problem{3}
 
-Notice that for any integers x, y the following properties holds for their residue classes mod n:
-\[\overline{x * y} = \bar x * \bar y \quad \quad \overline{x+y} = \bar x + \bar y\]
-
-The associativity of multiplication and addition of residue classes in  \(\residue\) follows from these facts and the associativity of multiplication and addition over the integers. Let \(a, b, c \in \Z\).
-
+Recall multiplication and addition are defined as follows over residue classes:
+\[\bar x * \bar y = \overline{x * y} \quad \quad \bar x + \bar y =\overline{x+y} \]
+The associativity of muliplication and addition follows directly from these definitions and the associativity of these operations on the integers. Let \(a, b, c \in \Z\).
 \begin{align*}
     (\bar x + \bar y) + \bar z &=  \overline{(x+y) + z}\\
     &= \overline{x+ (y+z)}\\
     &= \bar x + (\bar y + \bar z)
 \end{align*}
 
+\problem 4
+
 The argument is essentially the same for multiplication.
 
 \problem{5}
 
- Let \(n > 1\). Now consider \(\bar 0\in \residue\). It's not possible for \(\bar 0\) to have a multiplicative inverse, because any value multiplied by \(\bar 0\) is \(\bar 0\).  Thus \(\residue\) for n greater than one are not groups.
+All residue classes mod n where \(n > 1\) do not form a group under multiplication because \(\bar 0\) is an element of all of them and it can not have an inverse. If an inverse, \(\bar a\), were to exist, \(\bar 0 * \bar a = \bar 1\). However, \(\bar 0 * \bar a = \overline{0 * a}  = \bar 0  \).
  
 
 \problem{7}
-Define for any real number x:
-\[\bar x = x - [x]\]
-
-Notice that for any \(x, y \in G\) 
+We can simplify this problem by defining a new operation over real numbers:
+\[\bar x := x - [x] \]
+\(\star \) can equivalently be defined in terms of this operation:
 \[x \star y = x + y - [x +y] = \overline{x+y}\]
-The associativity and commutativity of \(\star\) follow from this definition (combined with the associativity and commutativity of addition). 
-\[x \star y = \bar x \star \bar y = \overline{x+y}\]
 \begin{itemize}
     \item well defined.
 
@@ -94,9 +100,9 @@ The associativity and commutativity of \(\star\) follow from this definition (co
     \[x \star y = x + y - [x + y] = x' + y' - [x' + y'] = x' \star y'\]
 
   \item binary operation/closure
-
-\(x \star y\) is at least 0 (when x+y is an integer) and no more than one. Thus \(x \star y \in G\) 
-
+  
+ Subtracting the integer part from a real number always results in a value less than 1 and no less than 0, i.e. \(0 \le \bar x = x - [x] < 1\). 
+ It follows that \(0 \le \overline{x + y}= x \star y  < 1\) and thus \(\star\) is closed under G
 
     \item associative
 
@@ -106,14 +112,14 @@ The associativity and commutativity of \(\star\) follow from this definition (co
     \[x \star y = \overline{x+y} = \overline{y + x} = y \star x\]
     
     \item identity
-
-    For any x in G:
-    \[x \star 0 = \overline{x+0} = x\]
     
+    0 is the identity element.    For any x in G:
+    \[ 0 \star x = x \star 0 = \overline{x+0}  = x\]
+
     \item every element has an inverse
 
     Let x be an arbitrary element of G. Then 1-x is its inverse:
-    \[x \star (1-x) = \overline{x + 1 - x} = \bar 1 = 0\]
+    \[x \star (1-x) = \overline{x + 1 - x} = \bar 1 = 1 - [1]= 0\]
     
     
 \end{itemize}
@@ -122,27 +128,82 @@ The associativity and commutativity of \(\star\) follow from this definition (co
 
 \section*{9}
 
-\begin{itemize}
-    \item (a) ...
-
-
-\item (b)
+Let \(G = \{a + b \sqrt{2} \; | \; a, b \in \Q \}\)
 
 \begin{itemize}
-    \item associativity, binary operation ...
+    \item (a) prove G is a group under addition. 
+    
+    
+    ... (skipping because it doesn't seem to interesting )
+
+
+\item (b) prove that the nonzero elements of G are a group under multiplication 
+
+\begin{itemize}
+    \item associativity, binary operation 
+    
+    ... (skipping these as well because they seem boring )
+    
+
+
     \item identity element
     
-    For any x in G, x*1 = x so 1 is identity
+    \(1 + 0 * \sqrt{2} = 1 \) is the identity element. Let \(a + b \sqrt{2} \in G\). Then \[1* (a + b \sqrt{2}) = (a + b \sqrt{2})*1 = a + b \sqrt{2}\]
+    
     \item everything has inverse 
 
     Let \(a + b\sqrt{2} \in G\). We want to show some \(x, y \in \mathbb Q\) exist such that
-    \[(a + b\sqrt{2})(x + y\sqrt{2}) = ax + b\sqrt{2}y\sqrt{2} + ay\sqrt{2} +b\sqrt{2}ax  = ax + 2by + (ay + bax)\sqrt{2} =  1\]
+    \begin{align*}
+        (a + b\sqrt{2})(x + y\sqrt{2}) &= 1\\
+        ax + ay\sqrt{2} +b\sqrt{2}x+ b\sqrt{2}y\sqrt{2}  &= 1 \\
+        ax + ay\sqrt{2} +b\sqrt{2}x+ 2by&= 1\\ 
+        ax + 2by + (ay + bx)\sqrt{2} &= 1 
+    \end{align*}
+    Equivalently:
+    \[ax + 2by = 1 \quad \quad  ay + bx = 0\]
+ 
+   Solving this system of equations with a wolframalpha (\url{https://www.wolframalpha.com/input?i=ax+%2B+2by+%3D+1+%5Cquad+%5Cquad%2C++ay+%2B+bx+%3D+0}) gives:
 
-    For this to be the case, the following system of equations must be satisfiable:
+\[
+a = 0,\quad x = 0,\quad b \neq 0,\quad y = \frac{1}{2b}
+\]
 
-    \[ax + 2by = 1 \quad \quad  ay + bax = 0\]
+\[
+a^2 - 2b^2 \neq 0,\quad
+x = \frac{a}{a^2 - 2b^2},\quad
+a \neq 0,\quad
+y = \frac{b}{2b^2 - a^2}
+\]
 
-    ... (this actually seems pretty hard because for some values of a, b it seems line there is no solution?)
+asking chatgpt to turn that into a cases format gave the following which I don't think is really correct:
+
+\[
+\begin{cases}
+x = 0,\; y = \dfrac{1}{2b}, & a = 0,\; b \neq 0, \\[6pt]
+x = \dfrac{a}{a^{2} - 2b^{2}},\;
+y = \dfrac{b}{2b^{2} - a^{2}}, & a \neq 0,\; a^{2} - 2b^{2} \neq 0.
+\end{cases}
+\]
+
+after spending a long time leading/dragging chatgpt in the right dircetion I was able to get it to output what I think is the most concise clean and correct solution:
+
+\[
+(x,y)=\frac{1}{a^{2}-2b^{2}}\,(a,\,-b)
+\qquad\text{for } a,b\in\mathbb{Q},\ (a,b)\neq(0,0).
+\]
+
+I won't exactly prove why that's the case but I will note that the that \(a^2 - 2b^2 \neq 0\) case is redundant. That's because \(a = \sqrt{2} b\) is not possible for rational a and b. 
+Furthermore \((a, b) = (0, 0)\) is not relevant since we were only intrested in the nonzero elements of G. 
+Thus we can always find a multiplicative inverse for any of the nonzero elements of G with the following formula:
+\[(x,y)=\frac{1}{a^{2}-2b^{2}}\,(a,\,-b)\] 
+
+\begin{aside}
+This is an interesting system of equations for CAS. It's really not that complicated, yet neither wolframalpha or sympy handeled it super easily. It would be nice to be able to assume the variables involved were rational and just immediately get out the most concise solution and be sure it was correct.
+\end{aside}
+        
+
+
+
 
 \end{itemize}
 \end{itemize}
@@ -150,25 +211,219 @@ The associativity and commutativity of \(\star\) follow from this definition (co
 
 \problem{15}
 
-We can show 
+ I though about this for a while and I like August's solution so maybe I'll do something along the same lines. I was actually having a bit of trouble coming up with something that wasn't needless verbose.
+That being said sometimes doing something concise but non standard is actually harder to read.
 
-Notice:
-\begin{align*}
-    \left ( a_1 a_2 \cdots a_n \right ) \cdot \left ( a_n^{-1} a_{n-1}^{-1}\cdots a_1^{-1} \right ) &=\left ( a_1 a_2 \cdots a_{n-1} \right ) a_n \cdot  a_n^{-1} \left ( a_{n-1}^{-1}\cdots a_1^{-1} \right )\\
-    &= \left ( a_1 a_2 \cdots a_{n-1} \right )  \cdot   \left ( a_{n-1}^{-1}\cdots a_1^{-1} \right ) \\
-\end{align*}
+\begin{itemize}
+    \item n=1
+    \[(a_1)^{-1}  a_1^{-1} = 1 = a_1^{-1}  (a_1)^{-1} \]
+
+ 
+    \item Assume \((a_1 \cdots a_{n-1})^{-1} =  a_{n-1}^{-1}\cdots a_1^{-1} \). We want to show \((a_1\cdots a_{n})^{-1} = ( a_n^{-1} \cdots a_{n}^{-1})\ \).
+
+    \begin{align*}
+        \left ( a_1 a_2 \cdots a_n \right )  ( a_n^{-1} a_{n-1}^{-1}\cdots a_1^{-1}  ) &=( a_1 a_2 \cdots a_{n-1}  ) a_n   a_n^{-1}  ( a_{n-1}^{-1}\cdots a_1^{-1}  )\\
+        &= \left ( a_1 a_2 \cdots a_{n-1} \right )  \cdot   \left ( a_{n-1}^{-1}\cdots a_1^{-1} \right ) \\
+        &= 1
+    \end{align*}
+    Similarly:
+    \begin{align*}
+       ( a_n^{-1} a_{n-1}^{-1}\cdots a_1^{-1}  )( a_1 a_2 \cdots a_n )  &= a_n^{-1} (a_{n-1}^{-1}\cdots a_1^{-1}  )( a_1 a_2 \cdots a_{n-1} )a_n  \\
+        &= a_n^{-1} a_n\\
+        &= 1
+    \end{align*}
+
+   \end{itemize}
 
 
 
 \problem{16}
 
-First direction: If the order of an element of a group is 2 then by definition, that element squared is 1. If the order is 1, then that element to any power including 2 is 1. 
+Let x be an element of G. Prove that \(x^2= 1 \iff |x|= 1 \wedge |x|=2\)
 
-Second direction: Suppose x doesn't have order 1 or 2 (in other words x has order greater than 2). Thus the smallest positive integer n such that \(x^n =1\) is greater than 2. It can't be the case then that  \(x^2 = 1\).
+\begin{itemize}
+    \item \(x^2 = 1 \implies |x| = 1 \wedge |x| = 2\)
+    
+    Suppose toc x doesn't have order 1 or 2 (in other words x has order greater than 2). By defenition, the smallest positive integer n such that \(x^n =1\) is greater than 2. It can't be the case then that  \(x^2 = 1\) and so we have reached a contradiction. 
+\item \(|x| = 1 \wedge |x| = 2 \implies x^2 = 1\)   
+
+If the order of an element of a group is 2 then by definition, that element squared is 1. If the order is 1, then that element to any power including 2 is 1. 
+
+\end{itemize}
+
 
 \problem{17}
+Let x be an element of G. Prove that if \(|x| = n\) for some positive integer n then \(x^{-1} = x^{n-1}\).
+\\~\\
+Suppose \(|x| = n\). By definition of order this means \(x^n = 1\). Thus:
+\[xx^{n-1} = x^{n-1} x = x^n = 1\]
+In other words, \(x^{n-1}\) is the inverse of x.
+
+
 
 \problem{19}
+
+Let x be an element of a group and a and b be positive integers. Prove:
+
+\begin{itemize}
+    \item (a) \(x^{a}x^{b} = x^{a+b}\) and \((x^a)^b = x^{ab}\)
+    
+   We prove \(x^{a}x^{b} = x^{a+b}\) by doing induction on b:
+\begin{itemize}
+    \item b= 1
+    \[x^ax^1 = a^{a+1}\]
+    \item Assume \(x^{a}x^{n} = x^{a+n}\). We want to show \(x^{a}x^{n+1} = x^{a+n+1}\) 
+
+    \begin{align*}
+        x^{a}x^{n} &= x^{a+n} \\
+        x^{a}x^{n} x &= x^{a+n} x \\
+        x^{a}x^{n+1} &= x^{a+n+1} 
+    \end{align*}
+
+
+
+\end{itemize}
+
+We prove \((x^a)^b = x^{ab}\) by induction on b:
+\begin{itemize}
+    \item n=1
+
+    \[(x^a)^1 = a^a= x^{a*1}\]
+
+    \item Assume \((x^a)^n = x^{an}\). We want to show \((x^a)^{n+1} = x^{a(n+1)}\).
+    
+    \begin{align*}
+        (x^a)^n &= x^{an}\\
+        (x^a)^n(x^a) &= x^{an}(x^a)\\
+        (x^a)^n(x^a)^1 &= x^{an}(x^a)^1\\
+        (x^a)^{n+1} &= x^{an+a} \quad \text{by what we just proved earlier}\\
+        (x^a)^{n+1} &= x^{a(n+1)} 
+    \end{align*}
+
+\end{itemize}
+    
+% \[x^{a}x^{b} = \prod_{i=1}^{a} x \prod_{i=1}^{b} x = \prod_{i=1}^{a+b} x = x^{a+b}\]
+
+%  \[(x^a)^b = \prod_{i=1}^{b} x^a = \prod_{i=1}^{b} \left( \prod_{i=1}^{a} x\right) = \prod_{i=1}^{ab}x = x^{ab}\]
+
+
+    \item (b)\((x^a)^{-1} = x^{-a}\)
+
+    We prove this by induction on a:
+
+    \begin{itemize}
+        \item a=1
+        \[(x^1)^{-1} = x^{-1}\]
+
+        \item Assume \((x^n)^{-1} = x^{-n}\). We want to show \((x^{n+1})^{-1} = x^{-n-1}\).
+        
+        \begin{align*}
+            x^n x^{-n} &= 1\\
+            xx^n x^{-n} &= x\\
+            x^{n+1} x^{-n}x^{-1} &= xx^{-1}\\
+            x^{n+1} x^{-n-1} &= 1\\
+        \end{align*}
+        
+
+    \end{itemize}
+
+
+    \item (c) show a is true for integers a and b that don't have to be positive
+    
+
+    ok been thinking about this. if a and b are both negative it's pretty straightforward since there's symetry in the definitions of \(x^{-n}\) and \(x^n\).
+
+    the other case is when one is positive and the other is negative. the maginitude of the exponents are equal or one is bigger than the other. We don't have to 
+    do a case split on which one is bigger. we can use the symetry I talked about earier so we can assume either the positive or negative is grearer or equal to the other (in magnatude).
+    we can split the bigger one up into a part that's equal to the smaller one and the remainer. then we apply problem 15. 
+    
+
+    \begin{itemize}
+        \item Case 1: \(a, b \ge 0\)
+        
+        It suffices to show the statement holds if \(a = 0 \lor b=0\) since we proved the case where they're both positive in part (a).
+        If a=0:
+    \[x^{a}x^{b} =  x^b = x^{a+b} \quad \text{and} \quad (x^a)^b = 1^b= 1= 1^0 = x^{ab}\]
+    Similarly, if b=0:
+     \[x^{a}x^{b} =  x^a = x^{a+b} \quad \text{and} \quad (x^a)^b = (x^a)^0 = 1= 1^0 = x^{ab}\]
+
+     \item Case 2: both are negative 
+     
+     We can rewrite the equations so that they have positive exponents with part (b) so that part (a) applies. With the first equation we substitute
+      \(x=(x^{-1})^{-1}\) into the first equation from part (a):
+     \begin{align*}
+        ((x^{-1})^{-1})^{a}((x^{-1})^{-1})^{b} &= ((x^{-1})^{-1})^{a+b} \\
+        (x^{-1})^{-a}(x^{-1})^{-b} &= (x^{-1})^{-a-b}\\
+        (x^{-1})^{a'}(x^{-1})^{b'} &= (x^{-1})^{a'+b'}  
+     \end{align*}
+     Similarly:
+     \begin{align*}
+        (x^a)^b &= x^{ab} \\
+        (((x^{-a})^{-1})^{-1})^{-b} &= x^{ab} \\
+        (x^{-a})^{-b} &= x^{(-a)(-b)}\\
+        (x^{a'})^{b'} &= x^{a'b'} 
+     \end{align*}
+     
+
+     \item Case 3: one is non-negative and the other is non-positive. 
+     
+     First, notice that swapping a and b doesn't change anything:
+     \[x^{a}x^{b} = x^{a+b} = x^{b+a} = x^bx^a\]
+     Similarly:
+     \[(x^a)^b = x^{ab} = x^{ba} = (x^{b})^{a}\]     
+     It's either the case that \(|a| \ge |b|\) or \(|a| \le |b|\). Suppose wlog the former is true.
+Now, recall that in case 2 we were able to flip the signs of all the exponents. This means that if we want a to be non-negative and b to be negative
+     but the opposite is true, we can flip the signs to get what we want. Assume wlog that \(a\ge 0 \ge b\).
+   
+     Since \(|a| \ge |b|\) and \(a\ge 0 \ge b\) we know 
+     \[ a = -b + r\] 
+     where r and -b are non-negative integers.
+     \begin{align*}
+        x^{a}x^{b} &= x^{a+b}\\
+        x^{-b + r}x^{b} &= x^{-b + r+b}\\
+        x^{-b + r}x^{b} &= x^{r}\\
+        x^r x^{-b}x^b &= x^r \quad \quad \text{by part (a)}\\
+        x^r &= x^r \quad \quad \text{by problem 15}\\
+     \end{align*}
+     With the other equation we can rearrange things so that only positive exponents are involved:
+     \begin{align*}
+        (x^a)^b &= x^{ab}\\ 
+        ((x^{-1})^a)^{-b} &= (x^{-1})^{a(-b)}\\
+        ((x')^a)^{b'} &= (x')^{ab'}
+     \end{align*}
+     In this rearranged form it's clear that it's true by a simple application of part (a)
+
+     
+     
+
+
+    \end{itemize}
+
+    
+%     \begin{itemize}
+%         \item Case 1: a = 0 or b = 0
+        
+%         If a=0:
+%         \[x^{a}x^{b} =  x^b = x^{a+b} \quad \text{and} \quad (x^a)^b = 1^b= 1= 1^0 = x^{ab}\].
+%         Similarly, if b=0:
+%          \[x^{a}x^{b} =  x^a = x^{a+b} \quad \text{and} \quad (x^a)^b = (x^a)^0 = 1= 1^0 = x^{ab}\]
+        
+%         \item Case 2: \(a < 0\) or \(b < 0\)
+        
+
+%     \end{itemize}
+
+%    From (a) we know: \(x^{a}x^{b} = x^{a+b}\)
+
+%    \begin{align*}
+%     x^{a}x^{b}  &= x^{a+b} \\
+%     (x^{a}x^{b} )^{-1} &= (x^{a+b})^{-1} \\
+%    \end{align*}
+    
+
+
+\end{itemize}
+
 
 \problem{20}
 
