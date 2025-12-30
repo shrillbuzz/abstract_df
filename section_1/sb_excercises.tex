@@ -426,6 +426,38 @@ Now, recall that in case 2 we were able to flip the signs of all the exponents. 
 
 
 \problem{20}
+Show that for \(x \in G\) both x and \(x^{-1}\) have the same order.
+\\~\\
+Suppose \(|x| = n\). We want to show that \(|x^{-1}|= n\). Since \(|x| = n\), we know 
+\[x^n = 1\]
+We can take the inverse of both sides to get
+\[(x^{-1})^n=1\]
+So we know that the order of x is at most n. Now suppose toc that some integer \(n' < n\) exists such that \((x^{-1})^{n'} = 1\). 
+Then by 1.1.19:
+\[ (x^{-1})^{n'} = x^{-n'} = 1\]
+which is a contradiction.
+
+
+\problem{26}
+
+Assume H is a non-empty subset of \((G, \star)\) and it is closed under \(\star\) and taking the inverse. Show that H is a group under \(\star\).
+
+\begin{itemize}
+    \item \(\star\) is a binary openation 
+    
+we've assumed it's closed so this applies
+    \item \(\star\) is associative
+    
+    this in inhereted from \(\star\) being associative over G 
+    \item every element has an inverse
+    
+    We've assumed H is closed under taking inverses so this is true
+    \item identity element exists 
+    
+    This is the tricky bit. Oh this just follows from everything having an inverse and H being closed. Let x be some element from H (which we know is possible since we said G was non-empty).
+    We know that \(x^{-1}\) is also an element of H. And since \(\star\) is closed, \(x \star x^{-1} = e\) which is an elemnt of H
+
+\end{itemize}
 
 \subsection{Matrix Groups}
 
