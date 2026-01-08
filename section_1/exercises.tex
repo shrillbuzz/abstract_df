@@ -10,7 +10,7 @@
 \usepackage[letterpaper, margin=0.75in]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{amsfonts}
+\usepackage{amsfonts} 
 \usepackage{xcolor}
 \usepackage{hhline}
 \usepackage[shortlabels]{enumitem}
@@ -58,17 +58,19 @@
 \newcommand{\bsubprob}{\begin{enumerate}[(a)]}
 \newcommand{\subprob}[2]{\item\label{ex#1#2}}
 \newcommand{\esubprob}{\end{enumerate}}
-\newcommand{\divides}{|}
+\newcommand{\divides}{\big\vert}
 \newcommand{\phiinv}{\inv{\phi}}
 \newcommand{\comp}{\circ}
 \newcommand{\exref}[1]{\ref{ex#1}}
 \newcommand{\suchthat}{|}
 \newcommand{\multiplicative}[1]{{#1}^{\times}}
 \newcommand{\multive}[1]{\multiplicative{#1}}
+\newcommand{\equi}{\sim}
+\newcommand{\sheaf}{\mathcal O}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Stab}{Stab}
-
 \newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
 
 \begin{document}
 \maketitle
@@ -328,8 +330,8 @@ $\eqcl 0$ has no multiplicative inverse
 \subsubsection{}\label{ex1p25}
 	Given $a,b \in G$,
 	\begin{align*}
-		(ab)(ba) &= ab^2a\\
-		&=a1a\\
+		(ab)(ba) &= ab^2a\\ 
+		&=a1a\\ 
 		&= a^2\\
 		&=1\\
 		\implies (ab)(ab)(ba) &= ab\\
@@ -561,7 +563,7 @@ a & b\\c & d
 \subsubsection{}\label{ex4p10}
 \begin{enumerate}[(a)]
 \item
-\begin{equation}\label{eq:uppertriang2}
+\begin{equation}\label{eq:uppertriang1}
 \begin{pmatrix}
 a_1 & b_1\\
 0 & c_1
@@ -625,7 +627,7 @@ a & b\\0 & c
 1/a & \frac{-b}{ac}\\0 & 1/c
 \end{pmatrix}
 \end{equation}
-\item In exercise \ref{ex1.1.26} we showed that closure under the operation and inverses means that it is a subgroup
+\item In exercise \exref{1.1.26} we showed that closure under the operation and inverses means that it is a subgroup
 \item 
 \begin{itemize}
 \item Closure under multiplication: Take \cref{eq:uppertriang2} and make $c_1=a_1$ and $c_2=a_2$, so the result becomes %$\begin{pmatrix}a_1a_2 & a_1b_2 + b_1a_2\\0 & a_1a_2\end{pmatrix}$
@@ -1132,7 +1134,7 @@ From basic set theory, any bijection $\phi$ has a unique inverse map $\psi$, so 
 	\item The $n=0$ case is obvious, via \cref{lemma:6.1}: $\phi(x^0)=\phi(1)=1=\phi(x)^0$
 	\end{itemize}
 	\esubprob
-\prob{6.2}
+\prob{1.6.2}
 \probstmt{If $\phi:G\to H$ is an isomorphism, prove that $\abs{\phi(x)}=\abs{x}$ for all $x\in G$. Deduce that any two isomorphic groups have the same number of elements of order $n$ for each $n\in\posints$. Is the result true if $\phi$ is only assumed to be a homomorphism?}
 	Let $x\in G$ and denote $\abs{\phi(x)}=n$, $\abs{x}=k$. Then
 	\begin{align*}
@@ -1167,7 +1169,7 @@ Since $h,h'\in H$ were arbitrary, $H$ is abelian.
 \end{itemize}
 \prob{6.4}
 \probstmt{Prove that the multiplicative groups $\reals-\set{0}$ and $\complex-\set{0}$ are not isomorphic.}
-Note that $\abs{e^{\frac{2\pi}{7}i}}=7$, but $\reals-\set{0}$ only has elements of order $1,2,\infty$. Apply \exref{6.2}
+Note that $\abs{e^{\frac{2\pi}{7}i}}=7$, but $\reals-\set{0}$ only has elements of order $1,2,\infty$. Apply \exref{1.6.2}
 \prob{6.5}
 \probstmt{Prove that the additive groups $\reals$ and $\rats$ are not isomorphic.}
 $\reals$ is uncountable and $\rats$ is countable. By basic theory, not even a bijection exists between them.
@@ -1332,7 +1334,7 @@ yk &= \frac{2\pi m}{n}\\
 \end{align*}
 Hence, $l=e^{\frac{2\pi m}{nk}} \mapsto z$ under $\phi$ (Note that $l^{nk}=1$ as well, so $l\in G$). Since $z\in G$ was arbitrary, $\phi$ is surjective.\\
 Also note that $e^{\frac{2\pi}{k}i}, e^{\frac{4\pi}{k}i} \in G$ are not equal, but they both map to $1$ under $\phi$.
-\prob{6.20}
+\prob{1.6.20}
 \probstmt{Let $G$ be a group and let $\Aut(G)$ be the set of all isomorphisms from $G$ onto $G$. Prove that $\Aut(G)$ is a group under function composition (called the \emph{automorphism group} of $G$ and the elements of $\Aut(G)$ are called \emph{automorphisms} of $G$}
 \begin{itemize}
 \item $\Aut G$ has an identity since the identity map is an isomorphism.
@@ -1348,7 +1350,7 @@ Also note that $e^{\frac{2\pi}{k}i}, e^{\frac{4\pi}{k}i} \in G$ are not equal, b
 Since $g\in G$ was arbitrary, we have $\phi\comp(\psi\comp\delta)=(\phi\comp\psi)\comp\delta$
 \end{itemize}
 \prob{6.21}
-\probstmt{Prove that for each fixed nonzero $k\in\rats$ the map from $\rats$ to itself defined by $q\mapsto kq$ is an automorphism of $\rats$ (cf. Exercise \ref{ex6.20}).}
+\probstmt{Prove that for each fixed nonzero $k\in\rats$ the map from $\rats$ to itself defined by $q\mapsto kq$ is an automorphism of $\rats$ (cf. Exercise \ref{ex1.6.20}).}
 Fix nonzero $k\in\rats$. Denote the homomorphism by $\phi$. Let $q,p\in Q$. Then $\phi(q+p) = k(q+p) =kq+kp=\phi(q)+\phi(p)$, so $\phi$ is a homomorphism. Note that we must have $k\neq 0$ and $1/k\in \rats$, and the inverse map $q\mapsto \frac{1}{k}q$ makes $\phi$ a bijection, and therefore an automorphism.
 \prob{6.22}
 \probstmt{Let $A$ be an abelian group and fix some $k\in\ints$. Prove that the map $a \mapsto a^k$ is a homomorphism from $A$ to itself. If $k=-1$ prove that this homomorphism is an isomorphism (i.e., is an automorphism of $A$).}
@@ -1375,9 +1377,9 @@ so $\phi$ is a homomorphism
 			&= (x\cdot y)\cdot z & \mbox{Rewrapping in the definition}
 			\end{align*}
 			IS THAT EXPLICIT ENOUGH DUMMY AND FOOTE?
-		\item Let $x\in F$. Then $1\cdot x = 1x = x$.
+		\item Let $x\in F$. Then $1\cdot x = 1x = x$. 
 	\end{itemize}
-\prob{1.7.1}
+\prob{1.7.2}
 \probstmt{Show that the additive group $\ints$ acts on itself by $z\cdot a=z+a$ for all $z,a\in\ints$}
 	\begin{itemize}
 		\item Let $x,y \in \ints$, and $z\in\ints$. Then
@@ -1397,7 +1399,7 @@ so $\phi$ is a homomorphism
 		\item Let $(x,y)\in\reals^2$. Then $0\cdot(x,y)=(x+0y,y)=(x,y)$.
 	\end{itemize}
 \prob{1.7.4}
-\probstmt{Let $G$ be a groups acting on a set $A$ and fix some $a\in A$. Show that the following sets are subgroups of $G$ (cf. Exercise \ref{ex1.1.26} of Section 1):}
+\probstmt{Let $G$ be a groups acting on a set $A$ and fix some $a\in A$. Show that the following sets are subgroups of $G$ (cf. Exercise \exref{1.1.26} of Section 1):}
 	\bsubprob
 	\subprob{1.7.4}{a}
 	\probstmt{the kernel of the action,}
@@ -1532,10 +1534,113 @@ so $\phi$ is a homomorphism
 		\end{equation}
 		So $\sigma$ is not in the kernel of the action. Since it was arbitrary nontrivial, the kernel is trivial and the action is faithful.
 \esubprob
+
 \skipprob{1.7.11}
+
 \skipprob{1.7.12}
+
 \prob{1.7.13}
 \probstmt{Find the kernel of the left regular action.}
+	$g\in G$ is in the kernel of the action if and only if
+	\begin{align*}
+		\forall a\in A: ga&=a\\
+		\iff\forall a\in A: g&=1 & \mbox{Left cancellation}\\
+		\iff g&=1
+	\end{align*}
+	Hence, the kernel is trivial. (The action is faithful)
+
+\prob{1.7.14}
+\probstmt{Let $G$ be a group and let $A=G$. Show if $G$ is non-abelian then the maps defined by $g\cdot a = ag$ for all $g,a\in G$ do \emph{not} satisfy the axioms of a (left) group action of $G$ on itself.}
+	Let $g,h\in G$ and let $a\in G$. Then
+	\begin{align*}
+		(gh)a &= a(gh)\\
+		&=agh
+	\end{align*}
+	But
+	\begin{align*}
+		g(ha) &= g(ah)\\
+		&= (ah)g\\
+		&= ahg
+	\end{align*}
+	For this action to satisfy the first axiom in the definition, we would at least need $agh=ahg$. But if we let $a=1$, then this is $gh=hg$. But this is not true for all $g,h\in G$ if $G$ is non-abelian.
+
+\prob{1.7.15}
+\probstmt{Let $G$ be any group and let $A=G$. Show that the maps defined by $g\cdot a=a\inv{g}$ for all $g,a\in G$ \emph{do} satisfy the axioms of a (left) groups action of $G$ on itself.}
+	\begin{itemize}
+		\item Let $g,h\in G$, and $a\in A=G$. Then
+			\begin{align*}
+				(gh)\cdot a &= a\inv{(gh)}\\
+				&= a(\inv{h}\inv{g})\\
+				&= (a\inv{h})\inv{g}\\
+				&= g\cdot(a\inv{h})\\
+				&= g\cdot(h\cdot a)
+			\end{align*}
+		\item Let $a \in A$. Then $1\cdot a = a\inv{1} = a1 =a$.
+	\end{itemize}
+
+\prob{1.7.16}
+\probstmt{Let $G$ be any group and let $A=G$. Show that the maps defined by $g\cdot a = ga\inv{g}$ for all $g,a\in G$ \emph{do} satisfy the axioms of a (left) group action (this action of $G$ on itself is called \emph{conjugation}).}
+	\begin{itemize}
+		\item Let $g,h \in G$ and $a\in A=G$. Then
+			\begin{align*}
+				(gh)\cdot a &= (gh)a\inv{(gh)}\\
+				&= gha\inv{h}\inv{g}\\
+				&=g\cdot (ha\inv{h})\\
+				&=g\cdot(h\cdot a)
+			\end{align*}
+		\item Let $a\in A$. Then $1\cdot a = 1a\inv{1}=1a1=a$
+	\end{itemize}
+
+\prob{1.7.17}
+\probstmt{Let $G$ be a group and let $G$ act on itself by left conjugation, so each $g \in G$ maps $G$ to $G$ by $x \mapsto gx\inv{g}$. For fixed $g\in G$, prove that conjugation by $g$ is an isomorphism from $G$ onto itself (i.e., is an automorgphism of $G$ - cf Exercise \ref{ex1.6.20}, Section \ref{sect1.6}). Deduce that $x$ and $gx\inv{g}$ have the same order for all $x$ in $G$ and that for any subset of $A$ of $G$, $\abs{A} = \abs{gA\inv{g}}$ (here $gA\inv{g} = \set{ga\inv{g}} = \set{ga\inv{g} \suchthat a \in A}$).}
+		(note that each map is the permutation associated with $g$ under the permutation representation). Let's denote the map $\delta_g: G\to G$. 
+	\begin{itemize}
+		\item $\delta_g$ is a homomorphism, since given $x,y\in G$, we have $\delta_g(xy) = gxy\inv{g} = gx\inv{g}gy\inv{g} = \delta_g(x)\delta_g(y)$.
+		\item $\delta_g$ is a bijection. I'll do a fancy proof. Consider the permutation representation of the bijection $\phi:G \to S_G$ (Recall that this is a group homomorphism). Then $\delta_g \comp \delta_{\inv{g}} = \phi(g)\phi(\inv{g}) = \phi(g\inv{g}) = \phi(1) = \delta_1 = \id$. Now swap $g$ and $\inv{g}$ in this proof and you have a two-sided inverse. THEREFORE, $\delta_g$ is an automorphism.
+		\item The deductions regarding orders follow from \exref{1.6.2}.
+	\end{itemize}
+
+\prob{1.7.18}
+\probstmt{Let $H$ be a group acting on a set $A$. Prove that the relation $\equi$ on $A$ defined by $a \equi b$ if and only if $a=hb$ for some $h\in H$ is an equivalence relation. (For each $x \in A$ the equivalence class of $x$ under $\equi$ is called the \emph{orbit} of $x$ under the action $H$. The orbits under the action of $H$ partition the set $A$.)}
+	\begin{itemize}
+		\item Reflexive. $a = 1a$, so $a \equi a$ since $1 \in H$.
+		\item Symmetric. Suppose $a \equi b$. Then $a=hb$ for some $h\in H$. But
+			\begin{align*}
+				a &= hb\\
+				\implies b&= \inv{h}a\\
+				\implies b \equi a & \mbox{Since $\inv{h} \in H$}
+			\end{align*}
+		\item Transitive. Suppose $a\equi b$ and $b \equi c$. Then $\exists g,h\in H$ such that $a=hb$ and $b=gc$. But then $a=hb=h(gc) =(hg)c$. So $a \equi c$ since $hg \in G$
+	\end{itemize}
+
+\prob{1.7.19}
+\probstmt{Let $H$ be a subgroup (cf. Exercise \exref{1.1.26} of section \ref{sect1.1} of the finite group $G$ and let $H$ act on $G$ (here $A=G$) by left multiplication. Let $x\in G$ and let $\sheaf$ be the orbit of $x$ under the action of $H$. Prove that the map $H \to \sheaf$ defined by $h \mapsto hx$ is a bijection (hence all orbits have cardinality $\abs{H}$). From this and the preceding exercise deduce \emph{Lagrange's Theorem:}}
+\begin{theorem}[Lagrange's Theorem]
+if $G$ is a finite group and $G$ is a subgroup of $G$ then $\abs{H}$ divides $\abs{G}$.
+\end{theorem}
+	Denote the map by $\phi$. Then
+	\begin{itemize}
+		\item Injectivity. Let $g,h \in H$. Then
+			\begin{align*}
+				\phi(g) &= \phi(h)\\
+				\implies gx &= hx\\
+				\implies g &= h & \mbox{Right cancellation in $G$}
+			\end{align*}
+		\item Surjectivity. Let $y \in \sheaf$. Then $y\equi x$. I.e. $y = hx$ for some $h\in H$. i.e. $y=\phi(h)$ for some $h\in H$. So $\phi$ is surjective
+	\end{itemize}
+	Hence, $\phi$ is a bijection. Let us prove Lagrange's Theorem.
+	\begin{proof}
+		Let $x\in G$. Denote the orbit of $x$ under the action of $H$ by $\sheaf_x$. Since the orbits \emph{partition} $G$, we must have $x_1,\ldots,x_n \in G$ such that 
+		\begin{equation}
+			\sum_{i=1}^n \abs{\sheaf_{x_i}} = \abs{G}
+		\end{equation}
+		But There is a bijection from each $\sheaf_{x_i}$ to $H$, therefore $\abs{\sheaf_{x_i}} = \abs{H}$ for $i=1,\ldots,n$. Hence, the equation above can be written as
+		\begin{align*}
+			\sum_{i=1}^n \abs{H} &= \abs{G}\\
+			\implies n\abs{H} &= \abs{G}\\
+			\implies \abs{H} &\divides \abs{G}\\
+		\end{align*}
+	\end{proof}
 \end{document}
 
 
